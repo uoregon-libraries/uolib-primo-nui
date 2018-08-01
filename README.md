@@ -1,4 +1,4 @@
-# Primo New UI Customization Docker Development Environment
+# UO Primo New UI
 
 ## Prerequisites:
 
@@ -60,3 +60,7 @@ To create a package, open a terminal in this directory and run:
 docker-compose run server gulp create-package
 ```
 Select a package when prompted. the zip file will appear in this folder.
+
+## Credits
+
+Credit to [thatbudakguy](https://github.com/thatbudakguy) for his [Primo New UI Customization Docker Development Environment](https://github.com/thatbudakguy/primo-explore-devenv-docker) which this repo is based on
