@@ -15,3 +15,4 @@ services:
       - ./:/home/node/primo-explore-devenv/packages # used to access generated package .zip files
       - ./views/UO:/home/node/primo-explore-devenv/primo-explore/custom/UO # replace with path to your view folder
       - ./CENTRAL_PACKAGE:/home/node/primo-explore-devenv/primo-explore/custom/CENTRAL_PACKAGE # optional - replace with path to your central package folder
+      - ./scripts:/home/node/scripts
