@@ -5,7 +5,7 @@ var LOCAL_VID = "UO";
   'use strict';
 
   var app = angular.module('viewCustom', ['angularLoad', 'toggleInstitutions', 'customActions']);
-  
+
 
   angular.module('toggleInstitutions').value('showHideMoreInstOptions', {
       default_state: 'hidden',
@@ -39,8 +39,7 @@ var LOCAL_VID = "UO";
 
   // Central package, add "report a problem" custom action
   app.component('prmActionListAfter', {
-    template: '<custom-action name="report_problem" label="Report a Problem" index=10 icon="ic_report_problem_24px" icon-set="action" link="https://library.uoregon.edu/librarysearch/problem?permalink_path=primo-explore/fulldisplay%3Fvid='+LOCAL_VID+'%26docid={{docID}}"></custom-action> \
-               <custom-action ng-if="(jtitle || issn) && genre==\'article\'" name="search_journal" label="Find Journal" index=11 icon="ic_search_24px" icon-set="action" link="https://alliance-primo.hosted.exlibrisgroup.com/primo-explore/openurl?ctx_ver=Z39.88-2004&rft.genre=journal&ctx_enc=info:ofi%2Fenc:UTF-8&url_ver=Z39.88-2004&url_ctx_fmt=infofi%2Ffmt:kev:mtx:ctx&url_ctx_fmt=infofi%2Ffmt:kev:mtx:ctx&rfr_id=info:sid%2Fprimo.exlibrisgroup.com:primo4-journal-cLinker&rft_val_fmt=info:ofi%2Ffmt:kev:mtx:journal&isCitationLinker=Y&sfx.title_search=exact&rft.jtitle={{jtitle}}&rft.issn={{issn}}&vid='+LOCAL_VID+'&institution=UO&url_ctx_val=&isSerivcesPage=true" />',
+    template: '<custom-action name="report_problem" label="Report a Problem" index=10 icon="ic_report_problem_24px" icon-set="action" link="https://library.uoregon.edu/librarysearch/problem?permalink_path=primo-explore/fulldisplay%3Fvid='+LOCAL_VID+'%26docid={{docID}}"></custom-action>',
     controller: 'prmActionListAfterController',
   	bindings: {parentCtrl: '<'},
   });
@@ -50,22 +49,9 @@ var LOCAL_VID = "UO";
     if (item instanceof Array) {
       item = item[0];
     }
-    console.log(item);
     var docID = item.pnx.search.recordid[0];
-    if (item.pnx.addata.genre) {
-      var genre = item.pnx.addata.genre[0];
-    }
-    if (item.pnx.addata.jtitle) {
-      var jtitle = item.pnx.addata.jtitle[0];
-    }
-    if (item.pnx.addata.issn) {
-      var issn = item.pnx.addata.issn[0];
-    }
 
     $scope.docID = docID;
-    $scope.genre = genre;
-    // $scope.jtitle = jtitle;
-    // $scope.issn = issn;
   }]);
 
   /****************************************************************************************************/
