@@ -1,0 +1,55 @@
+/* IE fix tall results */
+div.media-content-images,
+div.list-item-wrapper,
+div#mainResults > div {
+	height: 100%;
+}
+
+/* IE fix nav links position */
+prm-main-menu[menu-type=menu] {
+	flex-basis: auto !important;
+}
+
+/* Fix Non-Chrome Search Bar pushing prmSearchBarAfter */
+prm-search-bar .layout-fill {
+	min-height: 0;
+	height: auto;
+}
+
+/* Fix does_not_exist_in_my_institution_available color issue */
+[class*=does_not_exist] {
+	color: #b84d00;
+}
+
+/* Fix search bar flex box */
+.__lgPlus prm-search-bar .search-wrapper.layout-row>div[flex]:first-of-type, .__lgPlus prm-search-bar .search-wrapper>div[flex]:first-of-type {
+	flex: 1 1 35%;
+	max-width: 35%;
+}
+prm-atoz-search-bar, prm-browse-search-bar, prm-newspapers-search-bar, prm-search-bar, prm-tags-search-bar {
+	padding-left: .85em;
+}
+@media screen and (max-width: 599px) {
+	prm-atoz-search-bar, prm-browse-search-bar, prm-newspapers-search-bar, prm-search-bar, prm-tags-search-bar {
+		padding: 0;
+	}
+	prm-search-bar .search-wrapper.layout-row>div[flex]:first-of-type {
+		padding-left: .85em;
+	}
+}
+.simple-mode a {
+	color:#ffdd00;
+}
+span.beta {
+	display: inline-block;;
+	margin-left: 5px;
+	padding: 4px;
+	border-radius: 2px;
+	color: #124734;
+	background: #FFDD00;
+	font-weight: normal;
+	font-size: .35em;
+}
+prm-search-bar .search-wrapper.layout-row>div[flex]:first-of-type div {
+	font-size: 2.5em;
+}
