@@ -5,52 +5,7 @@ var LOCAL_VID = "UO";
   'use strict';
 
   var app = angular.module('viewCustom', ['angularLoad', 'toggleInstitutions', 'customActions']);
-
-  // Central package, toggle institutions button.
-  // Availabled 7/1/2018, remove angular.module definitions after release
-  angular
-    .module('toggleInstitutions', [])
-    .component('toggleInstitutions', {
-        bindings: {
-            startHidden: '<'
-        },
-        template: ' \
-  		<md-button class="md-raised" ng-click="$ctrl.toggleLibs()" id="summitButton" \
-        aria-controls="summitLinks" aria-expanded=false aria-label="Show/Hide Summit Libraries"> \
-   			{{$ctrl.showLibs ? hide_label : show_label}} \
-   			<span aria-hidden=true>{{$ctrl.showLibs ? "&laquo;" : "&raquo;"}}</span> \
-  		</md-button>',
-        controller: ['$scope', 'showHideMoreInstOptions', function ($scope, showHideMoreInstOptions) {
-            this.$onInit = function () {
-                if (showHideMoreInstOptions.default_state == 'hidden') this.showLibs = this.startHidden === false ? true : false
-                if (showHideMoreInstOptions.default_state == 'visible') this.showLibs = this.startHidden === false ? true : true
-                this.button = angular.element(document.querySelector('prm-alma-more-inst-after button'))
-                this.tabs = angular.element(document.querySelector('prm-alma-more-inst md-tabs'))
-                this.tabs.attr('id', 'summitLinks')
-                this.button.parent().after(this.tabs)
-                if (!this.showLibs) this.tabs.addClass('hide')
-
-                $scope.show_label = showHideMoreInstOptions.show_label;
-                $scope.hide_label = showHideMoreInstOptions.hide_label;
-            }
-            this.toggleLibs = function () {
-                this.showLibs = !this.showLibs
-                this.tabs.hasClass('hide') ?
-                this.tabs.removeClass('hide') && this.button.attr('aria-expanded', true) :
-                this.tabs.addClass('hide') && this.button.attr('aria-expanded', false)
-                /*
-                Move the content out of the buttons to disable the linking to other institutions
-                */
-                var buttons = this.tabs[0].querySelectorAll('md-list-item button');
-                for(var i=0; i<buttons.length; i++) {
-                  var $button = angular.element(buttons[i]);
-                  $button.children().find('prm-icon').detach();
-                  $button.after($button.children().detach());
-                  $button.detach();
-                }
-            }
-        }]
-    });
+  
 
   angular.module('toggleInstitutions').value('showHideMoreInstOptions', {
       default_state: 'hidden',
@@ -58,7 +13,29 @@ var LOCAL_VID = "UO";
       hide_label: 'Hide Summit Libraries'
   });
   /* hide/show */
-  app.component('prmAlmaMoreInstAfter', {template: '<toggle-institutions />'});
+  app.component('prmAlmaMoreInstAfter', {
+    template: '<toggle-institutions />',
+  	bindings: {parentCtrl: '<'},
+    controller: function($scope) {
+      this.$postLink = function() {
+        /* Add a hack to central package code */
+        var toggleLibsCached = $scope.$$childHead.$ctrl.toggleLibs;
+        $scope.$$childHead.$ctrl.toggleLibs = function() {
+          toggleLibsCached.apply(this);
+          /*
+          Move the content out of the buttons to disable the linking to other institutions
+          */
+          var buttons = this.tabs[0].querySelectorAll('md-list-item button');
+          for(var i=0; i<buttons.length; i++) {
+            var $button = angular.element(buttons[i]);
+            $button.children().find('prm-icon').detach();
+            $button.after($button.children().detach());
+            $button.detach();
+          }
+        }
+      }
+    }
+  });
 
   // Central package, add "report a problem" custom action
   app.component('prmActionListAfter', {
