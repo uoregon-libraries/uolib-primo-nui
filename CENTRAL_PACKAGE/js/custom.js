@@ -1,16 +1,15 @@
 /*
-*
+* 
 *	Orbis Cascade Alliance Central Package
-*	Environment: Sandbox
-*	Last updated: 20180522
-*
+*	Environment: Production
+*	Last updated: 20180701
+*	
 *	Included customizations:
-*		Hide/show Summit institutions (updated 20180522)
-*		Insert custom action (updated 20180306)
-*		Send SMS (updated 20180425)
+*		Hide/show Summit institutions (updated 20180701)
+*		Insert custom action (updated 20180612)
+*		Send SMS (updated 20180612)
 *
 */
-
 
 
 
@@ -20,6 +19,8 @@
 
   var app = angular.module('centralCustom', ['angularLoad']);
 
+/* Custom action */
+  
   angular.module('customActions', []);
 
 /* eslint-disable max-len */
@@ -154,9 +155,9 @@ angular.module('customActions').factory('customActions', function () {
             };
         }
     };
-});
+}); // Custom action
 
-/* Custom action */
+/* Send SMS */
 
 angular.module('sendSms', ['ngMaterial', 'primo-explore.components', 'customActions']);
 
@@ -209,10 +210,8 @@ angular.module('sendSms').component('ocaSendSms', {
     }]
 }).run(['$templateCache', 'smsOptions', function ($templateCache, smsOptions) {
     $templateCache.put('components/search/actions/actionContainer/action-container.html', '\n  <oca-send-sms ng-if="($ctrl.actionName===\'' + smsOptions.smsAction.name + '\')" finished-sms-event="$ctrl.throwCloseTabsEvent()" item="::$ctrl.item"></oca-send-sms>\n  <prm-send-email ng-if="($ctrl.actionName===\'E-mail\')" (finished-email-event)="$ctrl.throwCloseTabsEvent()" [item]="::$ctrl.item" [toggleform]="::$ctrl.toggleActionCotent" [user]="::\'\'"></prm-send-email>\n  <prm-citation ng-if="($ctrl.actionName===\'Citation\')" [item]="::$ctrl.item" [on-toggle]="::$ctrl.onToggle"></prm-citation>\n  <prm-permalink ng-if="($ctrl.actionName===\'Permalink\')" [item]="::$ctrl.item" [on-toggle]="::$ctrl.onToggle"></prm-permalink>\n  <prm-print-item ng-if="($ctrl.actionName===\'Print\')" (close-tabs-event)="$ctrl.throwCloseTabsEvent()" [item]="::$ctrl.item" [on-toggle]="::$ctrl.onToggle"></prm-print-item>\n  <prm-endnote ng-if="($ctrl.actionName===\'EndNote\')" (close-tabs-event)="$ctrl.throwCloseTabsEvent()" [item]="::$ctrl.item" [on-toggle]="::$ctrl.onToggle"></prm-endnote>\n  <prm-easybib ng-if="($ctrl.actionName===\'EasyBib\')" (close-tabs-event)="$ctrl.throwCloseTabsEvent()" [item]="::$ctrl.item" [on-toggle]="::$ctrl.onToggle"></prm-easybib>\n  <prm-refworks ng-if="($ctrl.actionName===\'RefWorks\')" (close-tabs-event)="$ctrl.throwCloseTabsEvent()" [item]="::$ctrl.item" [on-toggle]="::$ctrl.onToggle"></prm-refworks>\n  <prm-export-ris ng-if="($ctrl.actionName===\'RISPushTo\')" [item]="::$ctrl.item" [on-toggle]="::$ctrl.onToggle"></prm-export-ris>\n  <prm-action-container-after parent-ctrl="$ctrl"></prm-action-container-after>');
-}]); /* Custom Action */
+}]);
 
-
-/* Send SMS */
 /* eslint-disable max-len */
 angular.module('sendSms').component('smsAction', {
     require: {
@@ -254,10 +253,10 @@ angular.module('sendSms').value('smsOptions', {
     }
 }); /* Send SMS */
 
-/*
- * Toggle institutions (hide/show summit libraries)
- * https://github.com/alliance-pcsg/primo-explore-toggle-institutions
- */
+    /*
+     * Toggle institutions (hide/show summit libraries)
+     * https://github.com/alliance-pcsg/primo-explore-toggle-institutions
+     */
 
 angular
   .module('toggleInstitutions', [])
@@ -265,12 +264,7 @@ angular
       bindings: {
           startHidden: '<'
       },
-      template: `
-		<md-button class="md-raised" ng-click="$ctrl.toggleLibs()" id="summitButton"
-      aria-controls="summitLinks" aria-expanded=false aria-label="Show/Hide Summit Libraries">
- 			{{$ctrl.showLibs ? hide_label : show_label}}
- 			<span aria-hidden=true>{{$ctrl.showLibs ? '&laquo;' : '&raquo;'}}</span>
-		</md-button>`,
+      template: '<md-button class="md-raised" ng-click="$ctrl.toggleLibs()" id="summitButton" aria-controls="summitLinks" aria-expanded=false aria-label="Show/Hide Summit Libraries"> {{$ctrl.showLibs ? hide_label : show_label}} <span aria-hidden=true>{{$ctrl.showLibs ? "&laquo;" : "&raquo;"}}</span></md-button>',
       controller: ['$scope', 'showHideMoreInstOptions', function ($scope, showHideMoreInstOptions) {
           this.$onInit = function () {
               if (showHideMoreInstOptions.default_state == 'hidden') this.showLibs = this.startHidden === false ? true : false
@@ -292,7 +286,6 @@ angular
           }
       }]
   })
-
 angular.module('toggleInstitutions').value('showHideMoreInstOptions', {
     default_state: 'hidden',
     show_label: 'Show Summit Libraries',
