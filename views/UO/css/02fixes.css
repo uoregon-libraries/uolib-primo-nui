@@ -53,3 +53,8 @@ span.beta {
 prm-search-bar .search-wrapper.layout-row>div[flex]:first-of-type div {
 	font-size: 2.5em;
 }
+
+/* Fix user menu not displaying more options ellipse on sm breakpoint */
+prm-user-area .user-menu-button {
+	width: unset;
+}

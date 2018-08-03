@@ -69,7 +69,7 @@ var LOCAL_VID = "UO";
     /*** This is a hack of ExLibris code to manipulate the number of nav items ***/
     // Overwrite ExLibris function to control number of menu items to show at large breakpoint
     this.parentCtrl.showCount = function() {
-      return pCtrl.$mdMedia("lg") ? 5 : pCtrl.$mdMedia("md") ? 5 : pCtrl.$mdMedia("sm") ? 1 : pCtrl.$mdMedia("xs") ? 0 : 5
+      return pCtrl.$mdMedia("lg") ? 5 : pCtrl.$mdMedia("md") ? 4 : pCtrl.$mdMedia("sm") ? 0 : pCtrl.$mdMedia("xs") ? 0 : 5
     }
     /*** End hack ***/
 
@@ -78,6 +78,21 @@ var LOCAL_VID = "UO";
   	bindings: {parentCtrl: '<'},
   	controller: 'prmTopNavBarLinksAfterController',
 	});
+  /* Top Nav menu items flex adjustment */
+  app.component('prmTopbarAfter', {
+    bindings: {parentCtrl: '<'},
+    controller: function($scope, $element) {
+      var flexes = $element.parent()[0].querySelectorAll('div[flex]');
+      var flexFirst = angular.element(flexes[0]);
+      var flexSecond = angular.element(flexes[1]);
+
+      flexFirst.attr('flex', '75');
+      flexFirst.addClass('flex-75');
+      flexFirst.removeClass('flex-50');
+      flexSecond.attr('flex-md', '25');
+      flexSecond.addClass('flex-md-25');
+    }
+  });
 
 
   /* Collapse facets */
