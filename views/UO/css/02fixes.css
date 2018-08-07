@@ -58,3 +58,8 @@ prm-search-bar .search-wrapper.layout-row>div[flex]:first-of-type div {
 prm-user-area .user-menu-button {
 	width: unset;
 }
+
+/* fix sign in not displaying inline */
+#changUserStatus div {
+	display: inline-block;
+}

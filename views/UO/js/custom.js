@@ -93,6 +93,17 @@ var LOCAL_VID = "UO";
       flexSecond.addClass('flex-md-25');
     }
   });
+  /* Add sign-in button to user menu */
+  app.component('prmUserAreaAfter', {
+    bindings: {parentCtrl: '<'},
+    template: '<prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="sign-in"></prm-icon>',
+    controller: function($scope, $element) {
+      this.$postLink = function() {
+        var icon = $element.children();
+        angular.element($element.parent().find('button')[1]).prepend(icon);
+      }
+    }
+  })
 
 
   /* Collapse facets */
