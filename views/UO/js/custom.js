@@ -7,11 +7,6 @@ var LOCAL_VID = "UO";
   var app = angular.module('viewCustom', ['angularLoad', 'toggleInstitutions', 'customActions']);
 
 
-  angular.module('toggleInstitutions').value('showHideMoreInstOptions', {
-      default_state: 'hidden',
-      show_label: 'Show Summit Libraries',
-      hide_label: 'Hide Summit Libraries'
-  });
   /* hide/show */
   app.component('prmAlmaMoreInstAfter', {
     template: '<toggle-institutions />',
@@ -35,6 +30,11 @@ var LOCAL_VID = "UO";
         }
       }
     }
+  });
+  app.constant('showHideMoreInstOptions', {
+    default_state: 'hidden',
+    show_label: 'Show Summit Libraries',
+    hide_label: 'Hide Summit Libraries'
   });
 
   // Central package, add "report a problem" custom action
