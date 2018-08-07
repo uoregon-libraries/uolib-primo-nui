@@ -58,3 +58,15 @@ prm-search-bar .search-wrapper.layout-row>div[flex]:first-of-type div {
 prm-user-area .user-menu-button {
 	width: unset;
 }
+
+/* fix sign in not displaying inline */
+#changUserStatus div {
+	display: inline-block;
+}
+
+/* Remove extra menu bar items in extremely small screens */
+@media screen and (max-width: 400px) {
+	prm-search-bookmark-filter.view-switcher {
+		display: none;
+	}
+}
