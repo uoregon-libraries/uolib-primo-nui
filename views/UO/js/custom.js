@@ -102,7 +102,7 @@ var LOCAL_VID = "UO";
         var icon = $element.children();
         var button = angular.element($element.parent().find('button')[1]);
         // Only add icon if user isn't signed in
-        if (this.parentCtrl.userName().length == 0) {
+        if (this.parentCtrl.userSessionManagerService.isGuest()) {
           button.prepend(icon);
         } else {
           icon.remove();
