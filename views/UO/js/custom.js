@@ -100,7 +100,13 @@ var LOCAL_VID = "UO";
     controller: function($scope, $element) {
       this.$postLink = function() {
         var icon = $element.children();
-        angular.element($element.parent().find('button')[1]).prepend(icon);
+        var button = angular.element($element.parent().find('button')[1]);
+        // Only add icon if user isn't signed in
+        if (this.parentCtrl.userName().length == 0) {
+          button.prepend(icon);
+        } else {
+          icon.remove();
+        }
       }
     }
   })
