@@ -183,6 +183,10 @@ prm-alphabet-toolbar a.md-primoExplore-theme {
 	color: #0f7d00;
 }
 /* Recolour username */
+.prm-secondary-color.prm-hue4,
+prm-search-bookmark-filter .prm-hue4.md-button,
+prm-topbar .prm-hue4.top-nav-bar,
+prm-user-area-expandable .md-button.user-button,
 prm-user-area .user-menu-button .user-name {
 	color: hsla(0,0%,100%,.65);
 }
@@ -243,6 +247,12 @@ button.md-button.nav-control {
 /* Resize action whitespace */
 #getit_link1_0 {
 	margin-top: 1em;
+}
+div.full-view-section {
+	padding-left: 4em;
+}
+prm-full-view .services-index-under #services-index {
+	max-width: 140px;
 }
 
 /* Style My Interlibrary Loan Account link in My Account */

@@ -63,8 +63,9 @@ var LOCAL_VID = "UO";
   /****************************************************************************************************/
 
 	/* Top Nav link customizations,  */
-  app.controller('prmTopNavBarLinksAfterController', ['$scope', function ($scope) {
+  app.controller('prmTopNavBarLinksAfterController', ['$scope', '$element', function ($scope, $element) {
     var pCtrl = this.parentCtrl;
+    $scope.pCtrl = pCtrl
 
     /*** This is a hack of ExLibris code to manipulate the number of nav items ***/
     // Overwrite ExLibris function to control number of menu items to show at large breakpoint
@@ -93,14 +94,18 @@ var LOCAL_VID = "UO";
       flexSecond.addClass('flex-md-25');
     }
   });
-  /* Add sign-in button to user menu */
-  app.component('prmUserAreaAfter', {
+  /*
+  Add sign-in button to user menu
+  and display menu button for small breakpoint
+   */
+  app.component('prmUserAreaExpandableAfter', {
     bindings: {parentCtrl: '<'},
-    template: '<prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="sign-in"></prm-icon>',
+    templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/showMenuButton.html',
     controller: function($scope, $element) {
+      $scope.pCtrl = $scope.$parent.$parent.$$childHead.$ctrl;
       this.$postLink = function() {
         var icon = $element.children();
-        var button = angular.element($element.parent().find('button')[1]);
+        var button = angular.element($element.parent().find('button')[0]);
         // Only add icon if user isn't signed in
         if (this.parentCtrl.userSessionManagerService.isGuest()) {
           button.prepend(icon);
@@ -254,11 +259,20 @@ var LOCAL_VID = "UO";
     var sendTo = angular.element(document.querySelector('#action_list'));
     viewIt.after(sendTo);
     /* Swap View/Get It and Send To buttons on left */
-    var viewItButton = angular.element(document.querySelector('button[aria-label="View It"]'));
-    var getItButton = angular.element(document.querySelector('button[aria-label="Get It"]'));
-    var sendToButton = angular.element(document.querySelector('button[aria-label="Send to"]'));
+    var viewItButton = angular.element(document.querySelector('[translate="nui.getit.alma_tab1_norestrict"]')).parent();
+    var getItButton = angular.element(document.querySelector('[translate="nui.getit.alma_tab1_avail"]')).parent();
+    var sendToButton = angular.element(document.querySelector('[translate="nui.brief.results.tabs.send_to"]')).parent();
     getItButton.after(sendToButton);
     viewItButton.after(sendToButton);
+
+    /* Swap Details and Links sections in pop-over */
+    var links = angular.element(document.querySelector('#links'));
+    var details = angular.element(document.querySelector('#details'));
+    links.after(details);
+    /* Swap Details and Links buttons on left */
+    var linksButton = angular.element(document.querySelector('[translate="nui.brief.results.tabs.links"]')).parent();
+    var detailsButton = angular.element(document.querySelector('[translate="brief.results.tabs.details"]')).parent();
+    linksButton.after(detailsButton);
   }]);
 
 

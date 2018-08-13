@@ -70,3 +70,8 @@ prm-user-area .user-menu-button {
 		display: none;
 	}
 }
+
+/* Fix menu pop-over overlapping "signed in as" label */
+.__sm prm-main-menu[menu-type=full] div.prm-user-menu-content + div.settings-container {
+	margin-top: 2.5em;
+}

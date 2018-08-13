@@ -53,10 +53,9 @@ md-card-title-text span.md-subhead {
 }
 /* Suppress favourites button */
 .pin-button,
-prm-add-query-to-saved-searches {
-	display: none;
-}
-#fixed-buttons-holder > a {
+prm-add-query-to-saved-searches,
+#fixed-buttons-holder > a,
+md-menu-item.my-favorties-ctm {
 	display: none;
 }
 
