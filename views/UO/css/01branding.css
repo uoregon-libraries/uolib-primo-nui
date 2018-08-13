@@ -244,6 +244,12 @@ button.md-button.nav-control {
 #getit_link1_0 {
 	margin-top: 1em;
 }
+div.full-view-section {
+	padding-left: 4em;
+}
+prm-full-view .services-index-under #services-index {
+	max-width: 140px;
+}
 
 /* Style My Interlibrary Loan Account link in My Account */
 #uoIllLink {
