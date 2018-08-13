@@ -63,8 +63,9 @@ var LOCAL_VID = "UO";
   /****************************************************************************************************/
 
 	/* Top Nav link customizations,  */
-  app.controller('prmTopNavBarLinksAfterController', ['$scope', function ($scope) {
+  app.controller('prmTopNavBarLinksAfterController', ['$scope', '$element', function ($scope, $element) {
     var pCtrl = this.parentCtrl;
+    $scope.pCtrl = pCtrl
 
     /*** This is a hack of ExLibris code to manipulate the number of nav items ***/
     // Overwrite ExLibris function to control number of menu items to show at large breakpoint
@@ -77,6 +78,7 @@ var LOCAL_VID = "UO";
   app.component('prmTopNavBarLinksAfter',{
   	bindings: {parentCtrl: '<'},
   	controller: 'prmTopNavBarLinksAfterController',
+    templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/showMenuButton.html',
 	});
   /* Top Nav menu items flex adjustment */
   app.component('prmTopbarAfter', {

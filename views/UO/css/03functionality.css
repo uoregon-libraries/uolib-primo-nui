@@ -43,6 +43,10 @@ prm-search-result-thumbnail-container .fan-img {
 	transform: unset !important;
 }
 
+/* Increase prm-top-nav-bar-links-after buttons to full height */
+prm-top-nav-bar-links-after {
+	height: 100%;
+}
 /* Suppress main menu tooltips */
 md-tooltip.multi-row-tooltip {
 	display: none;
@@ -53,10 +57,9 @@ md-card-title-text span.md-subhead {
 }
 /* Suppress favourites button */
 .pin-button,
-prm-add-query-to-saved-searches {
-	display: none;
-}
-#fixed-buttons-holder > a {
+prm-add-query-to-saved-searches,
+#fixed-buttons-holder > a,
+md-menu-item.my-favorties-ctm {
 	display: none;
 }
 
