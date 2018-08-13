@@ -259,11 +259,20 @@ var LOCAL_VID = "UO";
     var sendTo = angular.element(document.querySelector('#action_list'));
     viewIt.after(sendTo);
     /* Swap View/Get It and Send To buttons on left */
-    var viewItButton = angular.element(document.querySelector('button[aria-label="View It"]'));
-    var getItButton = angular.element(document.querySelector('button[aria-label="Get It"]'));
-    var sendToButton = angular.element(document.querySelector('button[aria-label="Send to"]'));
+    var viewItButton = angular.element(document.querySelector('[translate="nui.getit.alma_tab1_norestrict"]')).parent();
+    var getItButton = angular.element(document.querySelector('[translate="nui.getit.alma_tab1_avail"]')).parent();
+    var sendToButton = angular.element(document.querySelector('[translate="nui.brief.results.tabs.send_to"]')).parent();
     getItButton.after(sendToButton);
     viewItButton.after(sendToButton);
+
+    /* Swap Details and Links sections in pop-over */
+    var links = angular.element(document.querySelector('#links'));
+    var details = angular.element(document.querySelector('#details'));
+    links.after(details);
+    /* Swap Details and Links buttons on left */
+    var linksButton = angular.element(document.querySelector('[translate="nui.brief.results.tabs.links"]')).parent();
+    var detailsButton = angular.element(document.querySelector('[translate="brief.results.tabs.details"]')).parent();
+    linksButton.after(detailsButton);
   }]);
 
 
