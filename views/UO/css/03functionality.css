@@ -43,10 +43,6 @@ prm-search-result-thumbnail-container .fan-img {
 	transform: unset !important;
 }
 
-/* Increase prm-top-nav-bar-links-after buttons to full height */
-prm-top-nav-bar-links-after {
-	height: 100%;
-}
 /* Suppress main menu tooltips */
 md-tooltip.multi-row-tooltip {
 	display: none;

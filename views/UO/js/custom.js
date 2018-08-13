@@ -78,7 +78,6 @@ var LOCAL_VID = "UO";
   app.component('prmTopNavBarLinksAfter',{
   	bindings: {parentCtrl: '<'},
   	controller: 'prmTopNavBarLinksAfterController',
-    templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/showMenuButton.html',
 	});
   /* Top Nav menu items flex adjustment */
   app.component('prmTopbarAfter', {
@@ -95,14 +94,18 @@ var LOCAL_VID = "UO";
       flexSecond.addClass('flex-md-25');
     }
   });
-  /* Add sign-in button to user menu */
-  app.component('prmUserAreaAfter', {
+  /*
+  Add sign-in button to user menu
+  and display menu button for small breakpoint
+   */
+  app.component('prmUserAreaExpandableAfter', {
     bindings: {parentCtrl: '<'},
-    template: '<prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="sign-in"></prm-icon>',
+    templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/showMenuButton.html',
     controller: function($scope, $element) {
+      $scope.pCtrl = $scope.$parent.$parent.$$childHead.$ctrl;
       this.$postLink = function() {
         var icon = $element.children();
-        var button = angular.element($element.parent().find('button')[1]);
+        var button = angular.element($element.parent().find('button')[0]);
         // Only add icon if user isn't signed in
         if (this.parentCtrl.userSessionManagerService.isGuest()) {
           button.prepend(icon);
