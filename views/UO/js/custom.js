@@ -245,35 +245,34 @@ var LOCAL_VID = "UO";
 
 
   /* Re-order Detailed view items */
-  app.component('prmLoginAlmaMashupAfter', {
+  app.component('prmFullViewServiceContainerAfter', {
     bindings: {parentCtrl: '<'},
-    controller: 'prmLoginAlmaMashupAfterController',
+    controller: function ($element) {
+
+      /* Base queries off full view service container element */
+      var elem = $element.parent().parent().parent().parent()[0];
+
+      /* Swap View/Get It and Send To sections on pop-over */
+      var viewIt = angular.element(elem.querySelector('#getit_link1_0'));
+      var sendTo = angular.element(elem.querySelector('#action_list'));
+      viewIt.after(sendTo);
+      /* Swap View/Get It and Send To buttons on left */
+      var viewItButton = angular.element(elem.querySelector('[translate="nui.getit.alma_tab1_norestrict"]')).parent();
+      var getItButton = angular.element(elem.querySelector('[translate="nui.getit.alma_tab1_avail"]')).parent();
+      var sendToButton = angular.element(elem.querySelector('[translate="nui.brief.results.tabs.send_to"]')).parent();
+      getItButton.after(sendToButton);
+      viewItButton.after(sendToButton);
+
+      /* Swap Details and Links sections in pop-over */
+      var links = angular.element(elem.querySelector('#links'));
+      var details = angular.element(elem.querySelector('#details'));
+      links.after(details);
+      /* Swap Details and Links buttons on left */
+      var linksButton = angular.element(elem.querySelector('[translate="nui.brief.results.tabs.links"]')).parent();
+      var detailsButton = angular.element(elem.querySelector('[translate="brief.results.tabs.details"]')).parent();
+      linksButton.after(detailsButton);
+    }
   });
-  app.controller('prmLoginAlmaMashupAfterController', [function () {
-    /* Re-order summit libraries to before alma mashup */
-    // var inst = angular.element(document).find('prm-alma-mashup')[0];
-    // inst.parentElement.appendChild(inst);
-
-    /* Swap View/Get It and Send To sections on pop-over */
-    var viewIt = angular.element(document.querySelector('#getit_link1_0'));
-    var sendTo = angular.element(document.querySelector('#action_list'));
-    viewIt.after(sendTo);
-    /* Swap View/Get It and Send To buttons on left */
-    var viewItButton = angular.element(document.querySelector('[translate="nui.getit.alma_tab1_norestrict"]')).parent();
-    var getItButton = angular.element(document.querySelector('[translate="nui.getit.alma_tab1_avail"]')).parent();
-    var sendToButton = angular.element(document.querySelector('[translate="nui.brief.results.tabs.send_to"]')).parent();
-    getItButton.after(sendToButton);
-    viewItButton.after(sendToButton);
-
-    /* Swap Details and Links sections in pop-over */
-    var links = angular.element(document.querySelector('#links'));
-    var details = angular.element(document.querySelector('#details'));
-    links.after(details);
-    /* Swap Details and Links buttons on left */
-    var linksButton = angular.element(document.querySelector('[translate="nui.brief.results.tabs.links"]')).parent();
-    var detailsButton = angular.element(document.querySelector('[translate="brief.results.tabs.details"]')).parent();
-    linksButton.after(detailsButton);
-  }]);
 
 
 	/* Un-suppress collection scopes in advanced search */
