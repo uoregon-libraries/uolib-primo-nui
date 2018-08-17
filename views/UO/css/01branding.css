@@ -188,7 +188,7 @@ prm-search-bookmark-filter .prm-hue4.md-button,
 prm-topbar .prm-hue4.top-nav-bar,
 prm-user-area-expandable .md-button.user-button,
 prm-user-area .user-menu-button .user-name {
-	color: hsla(0,0%,100%,.65);
+	color: hsla(0,0%,100%,.85);
 }
 /* Recolour menu more titles */
 prm-main-menu[menu-type=full] md-card .md-headline {
