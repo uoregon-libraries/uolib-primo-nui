@@ -95,24 +95,13 @@ var LOCAL_VID = "UO";
     }
   });
   /*
-  Add sign-in button to user menu
-  and display menu button for small breakpoint
+    Display menu button in top nav for small breakpoint
    */
   app.component('prmUserAreaExpandableAfter', {
     bindings: {parentCtrl: '<'},
     templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/showMenuButton.html',
     controller: function($scope, $element) {
       $scope.pCtrl = $scope.$parent.$parent.$$childHead.$ctrl;
-      this.$postLink = function() {
-        var icon = $element.children();
-        var button = angular.element($element.parent().find('button')[0]);
-        // Only add icon if user isn't signed in
-        if (this.parentCtrl.userSessionManagerService.isGuest()) {
-          button.prepend(icon);
-        } else {
-          icon.remove();
-        }
-      }
     }
   })
 
@@ -180,11 +169,11 @@ var LOCAL_VID = "UO";
 		bindings: {parentCtrl: '<'},
     template: '<br/><hr/>' +
     '<p style="text-align: center;"> \
-      <a ng-if="!$ctrl.parentCtrl.advancedSearch" md-ink-ripple="#FFF" class="librarysearch-survey zero-margin button-with-icon md-button md-primoExplore-theme md-ink-ripple" style="font-size:1.25em; color:white; white-space:normal;" href="https://oregon.qualtrics.com/jfe/form/SV_4SktAK5aP13RQzz">\
-        Tell us what you think about our new LibrarySearch interface\
+      <a target="_blank" ng-if="!$ctrl.parentCtrl.advancedSearch" md-ink-ripple="#FFF" class="librarysearch-survey zero-margin button-with-icon md-button md-primoExplore-theme md-ink-ripple" style="font-size:1.25em; color:white; white-space:normal;" href="https://oregon.qualtrics.com/jfe/form/SV_4SktAK5aP13RQzz">\
+        Tell us what you think about our new LibrarySearch interface <prm-icon external-link="" style="color:#FFF" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new"></prm-icon>\
       </a> \
-      <a ng-if="$ctrl.parentCtrl.advancedSearch" md-ink-ripple="#000" class="librarysearch-survey-dark zero-margin button-with-icon md-button md-primoExplore-theme md-ink-ripple" style="font-size:1.25em; color:black; white-space:normal;" href="https://oregon.qualtrics.com/jfe/form/SV_4SktAK5aP13RQzz">\
-        Tell us what you think about our new LibrarySearch interface\
+      <a target="_blank" ng-if="$ctrl.parentCtrl.advancedSearch" md-ink-ripple="#000" class="librarysearch-survey-dark zero-margin button-with-icon md-button md-primoExplore-theme md-ink-ripple" style="font-size:1.25em; color:black; white-space:normal;" href="https://oregon.qualtrics.com/jfe/form/SV_4SktAK5aP13RQzz">\
+        Tell us what you think about our new LibrarySearch interface <prm-icon external-link="" style="color:#000" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new"></prm-icon>\
       </a> \
     </p><hr/>\
     <div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/primo-explore/search?vid='+LOCAL_VID+'&sortby=rank"> <span>LibrarySearch</span> <span class="beta">BETA</span></a></div>',

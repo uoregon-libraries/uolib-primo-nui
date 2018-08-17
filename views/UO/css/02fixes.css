@@ -65,7 +65,7 @@ prm-user-area .user-menu-button {
 }
 
 /* Remove extra menu bar items in extremely small screens */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
 	prm-search-bookmark-filter.view-switcher {
 		display: none;
 	}
