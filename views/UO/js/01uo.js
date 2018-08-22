@@ -1,53 +1,7 @@
 var LOCAL_VID = "UO";
 
-var app = angular.module('viewCustom', ['angularLoad', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
+var app = angular.module('viewCustom', ['angularLoad', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability', 'browzine']);
 
-/* hide/show */
-app.component('prmAlmaMoreInstAfter', {
-  template: '<toggle-institutions />',
-  bindings: {parentCtrl: '<'},
-  controller: function($scope) {
-    this.$postLink = function() {
-      /* Add a hack to central package code */
-      var toggleLibsCached = $scope.$$childHead.$ctrl.toggleLibs;
-      $scope.$$childHead.$ctrl.toggleLibs = function() {
-        toggleLibsCached.apply(this);
-        /*
-        Move the content out of the buttons to disable the linking to other institutions
-        */
-        var buttons = this.tabs[0].querySelectorAll('md-list-item button');
-        for(var i=0; i<buttons.length; i++) {
-          var $button = angular.element(buttons[i]);
-          $button.children().find('prm-icon').detach();
-          $button.after($button.children().detach());
-          $button.detach();
-        }
-      }
-    }
-  }
-});
-app.constant('showHideMoreInstOptions', {
-  default_state: 'hidden',
-  show_label: 'Show Summit Libraries',
-  hide_label: 'Hide Summit Libraries'
-});
-
-// Central package, add "report a problem" custom action
-app.component('prmActionListAfter', {
-  template: '<custom-action name="report_problem" label="Report a Problem" index=10 icon="ic_report_problem_24px" icon-set="action" link="https://library.uoregon.edu/librarysearch/problem?permalink_path=primo-explore/fulldisplay%3Fvid='+LOCAL_VID+'%26docid={{docID}}"></custom-action>',
-  controller: 'prmActionListAfterController',
-  bindings: {parentCtrl: '<'},
-});
-app.controller('prmActionListAfterController', ['$scope', '$element', function ($scope, $element) {
-  var item = this.parentCtrl.item;
-  // Get the first item in the case that this was a multiselect report
-  if (item instanceof Array) {
-    item = item[0];
-  }
-  var docID = item.pnx.search.recordid[0];
-
-  $scope.docID = docID;
-}]);
 
 /****************************************************************************************************/
 
@@ -329,79 +283,13 @@ addWorldcatButton({
   link: 'https://uolibraries.on.worldcat.org/'
 });
 
-
-/* Begin BrowZine - Primo Integration... */
-// Define Angular module and whitelist URL of server with Node.js script
-app.constant('nodeserver', "https://apiconnector.thirdiron.com/v1/libraries/38")
-  .config(['$sceDelegateProvider', 'nodeserver', function ($sceDelegateProvider, nodeserver) {
-    var urlWhitelist = $sceDelegateProvider.resourceUrlWhitelist();
-    urlWhitelist.push(nodeserver + '**');
-    $sceDelegateProvider.resourceUrlWhitelist(urlWhitelist);
-}]);
-
-// Add Article In Context & BrowZine Links
-app.controller('prmSearchResultAvailabilityLineAfterController', function($scope, $http, nodeserver) {
-  var vm = this;
-  $scope.book_icon = "https://s3.amazonaws.com/thirdiron-assets/images/integrations/browzine_open_book_icon.png";
-  if (vm.parentCtrl.result.pnx.addata.doi && vm.parentCtrl.result.pnx.display.type[0] == 'article')  {
-        vm.doi = vm.parentCtrl.result.pnx.addata.doi[0] || '';
-        var articleURL = nodeserver + "/articles?DOI=" + vm.doi;
-        $http.jsonp(articleURL, {jsonpCallbackParam: 'callback'}).then(function(response) {
-          $scope.article = response.data;
-        }, function(error){
-          console.log(error);
-          });
-    }
-    if (vm.parentCtrl.result.pnx.addata.issn && vm.parentCtrl.result.pnx.display.type[0] == 'journal')  {
-        vm.issn = vm.parentCtrl.result.pnx.addata.issn[0].replace("-", "") || '';
-        var journalURL = nodeserver + "/journals?ISSN=" + vm.issn;
-        $http.jsonp(journalURL, {jsonpCallbackParam: 'callback'}).then(function(response) {
-          $scope.journal = response.data;
-        }, function(error){
-          console.log(error);
-          });
-      }
-
-});
-
-// Below is where you can customize the wording that is displayed (as well as the hover over text) for the BrowZine links.
-// St Olaf has chosen "View Journal Contents" for the "Journal Availability Link" but other great options include things such as "View Journal" or "View this Journal"
-// St Olaf is using "View Issue Contents" for the "Article in Context" link but another great option is "View Complete Issue" or "View Article in Context".
-// St Olaf also has added a hover over link that says "Via BrowZine" to emphasize the interaction being used.
-
+/* HathiTrust link out and Browzine link outs */
 app.component('prmSearchResultAvailabilityLineAfter', {
   bindings: { parentCtrl: '<' },
-  controller: 'prmSearchResultAvailabilityLineAfterController',
-  template: '\n<hathi-trust-availability></hathi-trust-availability>\n<div ng-if="article.data.browzineWebLink"><a href="{{ article.data.browzineWebLink }}" target="_blank" title="Via BrowZine"><img src="https://s3.amazonaws.com/thirdiron-assets/images/integrations/browzine_open_book_icon.png" class="browzine-icon"> View Issue Contents <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" role="img" class="browzine-external-link"><svg id="open-in-new_cache29" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"></svg></md-icon></a></div><div ng-if="journal.data[0].browzineWebLink"><a href="{{ journal.data[0].browzineWebLink }}" target="_blank" title="Via BrowZine"><img src="https://s3.amazonaws.com/thirdiron-assets/images/integrations/browzine_open_book_icon.png" class="browzine-icon"> View Journal Contents <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="icon-open-in-new" role="img" class="browzine-external-link"><svg id="open-in-new_cache29" width="100%" height="100%" viewBox="0 0 24 24" y="504" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"></svg></md-icon></a></div>'
+  template: '\n<hathi-trust-availability></hathi-trust-availability>\n<browzine parent-ctrl="$ctrl.parentCtrl"></browzine>'
 });
-
-// Add Journal Cover Images from BrowZine
-app.controller('prmSearchResultThumbnailContainerAfterController', function ($scope, $http, nodeserver) {
-  var vm = this;
-  var newThumbnail = '';
-  // checking for item property as this seems to impact virtual shelf browse (for reasons as yet unknown)
-  if (vm.parentCtrl.item && vm.parentCtrl.item.pnx.addata.issn) {
-    vm.issn = vm.parentCtrl.item.pnx.addata.issn[0].replace("-", "") || '';
-    var journalURL = nodeserver + "/journals?ISSN=" + vm.issn;
-    $http.jsonp(journalURL, { jsonpCallbackParam: 'callback' }).then(function (response) {
-      if (response.data.data["0"] && response.data.data["0"].browzineEnabled)  {
-        newThumbnail = response.data.data["0"].coverImageUrl;
-      }
-    }, function (error) {
-      console.log(error); //
-    });
-  }
-  vm.$doCheck = function (changes) {
-    if (vm.parentCtrl.selectedThumbnailLink) {
-      if (newThumbnail != '') {
-        vm.parentCtrl.selectedThumbnailLink.linkURL = newThumbnail;
-      }
-    }
-  };
-});
-
+/* Browzine thumbnail overrides */
 app.component('prmSearchResultThumbnailContainerAfter', {
   bindings: { parentCtrl: '<' },
-  controller: 'prmSearchResultThumbnailContainerAfterController'
+  template: '<browzine-thumbnail parent-ctrl="$ctrl.parentCtrl"></browzine-thumbnail>'
 });
-/* End BrowZine - Primo Integration */
