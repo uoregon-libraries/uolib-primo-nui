@@ -1,3 +1,5 @@
 .idea/
 *.zip
 /views/**/custom1.css
+/views/**/custom.js
+/views/**/node_modules/
