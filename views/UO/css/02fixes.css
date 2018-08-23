@@ -16,11 +16,6 @@ prm-search-bar .layout-fill {
 	height: auto;
 }
 
-/* Fix does_not_exist_in_my_institution_available color issue */
-[class*=does_not_exist] {
-	color: #b84d00;
-}
-
 /* Fix search bar flex box */
 .__lgPlus prm-search-bar .search-wrapper.layout-row>div[flex]:first-of-type, .__lgPlus prm-search-bar .search-wrapper>div[flex]:first-of-type {
 	flex: 1 1 35%;
