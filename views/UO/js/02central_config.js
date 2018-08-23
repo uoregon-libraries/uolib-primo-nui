@@ -2,25 +2,6 @@
 app.component('prmAlmaMoreInstAfter', {
   template: '<toggle-institutions />',
   bindings: {parentCtrl: '<'},
-  controller: function($scope) {
-    this.$postLink = function() {
-      /* Add a hack to central package code */
-      var toggleLibsCached = $scope.$$childHead.$ctrl.toggleLibs;
-      $scope.$$childHead.$ctrl.toggleLibs = function() {
-        toggleLibsCached.apply(this);
-        /*
-        Move the content out of the buttons to disable the linking to other institutions
-        */
-        var buttons = this.tabs[0].querySelectorAll('md-list-item button');
-        for(var i=0; i<buttons.length; i++) {
-          var $button = angular.element(buttons[i]);
-          $button.children().find('prm-icon').detach();
-          $button.after($button.children().detach());
-          $button.detach();
-        }
-      }
-    }
-  }
 });
 app.constant('showHideMoreInstOptions', {
   default_state: 'hidden',
