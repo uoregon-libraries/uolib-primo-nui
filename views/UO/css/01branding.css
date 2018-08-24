@@ -281,3 +281,8 @@ prm-full-view .services-index-under #services-index {
 h3.item-title span.text-in-brackets {
 	opacity: .55;
 }
+
+/* Hathi Trust color override */
+span.umnHathiTrustLink md-icon svg {
+	filter: grayscale(0%) !important;
+}
