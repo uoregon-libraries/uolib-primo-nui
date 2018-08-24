@@ -176,7 +176,7 @@ var LOCAL_VID = "UO";
         Tell us what you think about our new LibrarySearch interface <prm-icon external-link="" style="color:#000" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new"></prm-icon>\
       </a> \
     </p><hr/>\
-    <div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/primo-explore/search?vid='+LOCAL_VID+'&sortby=rank"> <span>LibrarySearch</span> <span class="beta">BETA</span></a></div>',
+    <div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/primo-explore/search?vid='+LOCAL_VID+'&sortby=rank"> <span>LibrarySearch</span></a></div>',
     controller: function($scope, $element) {
       // var link = '';
       this.$postLink = function() {
@@ -214,6 +214,22 @@ var LOCAL_VID = "UO";
         flexFirst.parent().addClass('layout-sm-column');
         flexFirst.parent().addClass('layout-xs-column');
       }
+
+      /*
+        Race condition hack
+        The search scope DOM elements just can't be configured until they're loaded.
+        This hack lets you delay a static amount of time. Very race conditiony, DO NOT USE.
+      */
+      if (!this.parentCtrl.advancedSearch) {
+        setTimeout(scopes_delay_hack, 2000); /* 2 second delay */
+        function scopes_delay_hack() {
+          angular.element(document).ready(function () {
+            var elem = document.querySelectorAll('md-option[value="uo_curriculum"], md-option[value="uo_docs"], md-option[value="uo_juvenile"], md-option[value="uo_knightref"], md-option[value="uo_music"], md-option[value="uo_scua"]');
+            angular.element(elem).remove();
+          });
+        }
+      }
+
     },
   });
 
@@ -270,11 +286,11 @@ var LOCAL_VID = "UO";
 	}).controller('prmAdvancedSearchAfterController', ['$scope', function ($scope) {
     // Generate style element to unhide advanced scopes
     var style = document.createElement('style');
-      style.id = 'advancedScopesUnhide';
-      style.innerHTML = 'md-option[value="uo_curriculum"], md-option[value="uo_docs"], md-option[value="uo_juvenile"], md-option[value="uo_knightref"], md-option[value="uo_music"], md-option[value="uo_scua"] { display: flex; }';
+    style.id = 'advancedScopesUnhide';
+    style.innerHTML = 'md-option[value="uo_curriculum"], md-option[value="uo_docs"], md-option[value="uo_juvenile"], md-option[value="uo_knightref"], md-option[value="uo_music"], md-option[value="uo_scua"] { display: flex; }';
 
-      // Add style element on advanced search open
-      this.$onInit = function() {
+    // Add style element on advanced search open
+    this.$onInit = function() {
       document.body.appendChild(style);
     }
     // Remove style element on advanced search close
@@ -396,16 +412,3 @@ var LOCAL_VID = "UO";
   /* End BrowZine - Primo Integration */
 
 })();
-
-/*
-  Race condition hack
-  Some DOM elements just can't be configured until they're loaded.
-  This hack lets you delay a static amount of time. Very race conditiony, DO NOT USE.
-*/
-setTimeout(delay_hack, 2000); /* 2 second delay */
-function delay_hack() {
-  angular.element(document).ready(function () {
-    var elem = document.querySelectorAll('md-option[value="uo_curriculum"], md-option[value="uo_docs"], md-option[value="uo_juvenile"], md-option[value="uo_knightref"], md-option[value="uo_music"], md-option[value="uo_scua"]');
-    angular.element(elem).remove();
-  });
-}
