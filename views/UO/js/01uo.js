@@ -125,7 +125,7 @@ app.component('prmSearchBarAfter', {
       Tell us what you think about our new LibrarySearch interface <prm-icon external-link="" style="color:#000" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new"></prm-icon>\
     </a> \
   </p><hr/>\
-  <div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/primo-explore/search?vid='+LOCAL_VID+'&sortby=rank"> <span>LibrarySearch</span> <span class="beta">BETA</span></a></div>',
+  <div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/primo-explore/search?vid='+LOCAL_VID+'&sortby=rank"> <span>LibrarySearch</span></a></div>',
   controller: function($scope, $element) {
     // var link = '';
     this.$postLink = function() {
