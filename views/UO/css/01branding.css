@@ -23,6 +23,11 @@ prm-spinner.half-transparent .diamond {
 prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
 	background-color: #124734 !important;
 }
+md-toast, md-toast.md-default-theme {
+	background-color: #96D5EA;
+	color: #9C3123;
+}
+prm-add-alert-toast md-toast .md-toast-content, prm-silent-login-alert-toast md-toast .md-toast-content, prm-timeout-toast md-toast .md-toast-content,
 .prm-alert-border, .bar.alert-bar {
 	background-color: #96D5EA;
 	color: #9C3123;
@@ -36,8 +41,11 @@ prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-backgrou
 
 /* Recolour sign in button */
 .bar prm-authentication .md-button,
-.bar button.dismiss-alert-button {
-	color: #9C3123;
+.bar button.dismiss-alert-button,
+.bar md-divider,
+/* Recolour toast buttons */
+prm-add-alert-toast md-toast .md-toast-content .md-button, prm-silent-login-alert-toast md-toast .md-toast-content .md-button, prm-timeout-toast md-toast .md-toast-content .md-button {
+	color: #000000;
 }
 .bar prm-authentication .md-button:hover:not([disabled]),
 .bar prm-authentication .md-button:focus:not([disabled]),
@@ -46,8 +54,11 @@ prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-backgrou
 	color: #000000;
 	background-color: rgba(58,58,58, .25);
 }
-.bar md-divider {
-	border-color: #9C3123;
+/* Fix toast centering  */
+prm-add-alert-toast md-toast .md-toast-content,
+prm-silent-login-alert-toast md-toast .md-toast-content,
+prm-timeout-toast md-toast .md-toast-content {
+	width: auto;
 }
 
 /* Resize the clickable logo */
