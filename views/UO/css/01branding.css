@@ -24,9 +24,8 @@ prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-backgrou
 	background-color: #124734 !important;
 }
 .prm-alert-border, .bar.alert-bar {
-	background-color: #124734 !important;
-	color: #FFFFFF;
-	color: hsla(0,0%,100%,.65);
+	background-color: #96D5EA;
+	color: #9C3123;
 	border: none;
 	border-radius: 0;
 	font-size: 1.2em;
@@ -38,19 +37,17 @@ prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-backgrou
 /* Recolour sign in button */
 .bar prm-authentication .md-button,
 .bar button.dismiss-alert-button {
-	color: #FFFFFF;
-	color: hsla(0,0%,100%,.65);
+	color: #9C3123;
 }
 .bar prm-authentication .md-button:hover:not([disabled]),
 .bar prm-authentication .md-button:focus:not([disabled]),
 .bar button.dismiss-alert-button:hover:not([disabled]),
 .bar button.dismiss-alert-button:focus:not([disabled])  {
-	color: #124734;
-	color: #FFFFFF;
-	background-color: rgba(76,180,69,.1);
+	color: #000000;
+	background-color: rgba(58,58,58, .25);
 }
 .bar md-divider {
-	border-color: #FFFFFF;
+	border-color: #9C3123;
 }
 
 /* Resize the clickable logo */
