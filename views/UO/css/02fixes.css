@@ -35,16 +35,6 @@ prm-atoz-search-bar, prm-browse-search-bar, prm-newspapers-search-bar, prm-searc
 .simple-mode a {
 	color:#ffdd00;
 }
-span.beta {
-	display: inline-block;;
-	margin-left: 5px;
-	padding: 4px;
-	border-radius: 2px;
-	color: #124734;
-	background: #FFDD00;
-	font-weight: normal;
-	font-size: .35em;
-}
 prm-search-bar .search-wrapper.layout-row>div[flex]:first-of-type div {
 	font-size: 2.5em;
 }

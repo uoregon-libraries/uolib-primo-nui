@@ -6,7 +6,7 @@ services:
     # image: budak/primo-explore-devenv
     build: .
     environment:
-      PROXY: https://alliance-primo-sb.hosted.exlibrisgroup.com:443 # replace with url to your primo instance
+      PROXY: https://alliance-primo.hosted.exlibrisgroup.com:443 # replace with url to your primo instance
       VIEW: UO # replace with name of your view as it appears below in "volumes"
     ports:
       - 8003:8003 # used to view the application
