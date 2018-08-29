@@ -23,8 +23,12 @@ prm-search-bar .layout-fill {
 
 /* Fix search bar flex box */
 .__lgPlus prm-search-bar .search-wrapper.layout-row>div[flex]:first-of-type, .__lgPlus prm-search-bar .search-wrapper>div[flex]:first-of-type {
-	flex: 1 1 35%;
-	max-width: 35%;
+	flex: 1 1 20%;
+	max-width: 20%;
+}
+.__lgPlus prm-search-bar .search-wrapper.layout-row>div.layout-row>div[flex].flex-lgPlus-55, .__lgPlus prm-search-bar .search-wrapper>div.layout-row>div[flex].flex-lgPlus-55 {
+	flex: 1 1 80%;
+	max-width: 80%;
 }
 prm-atoz-search-bar, prm-browse-search-bar, prm-newspapers-search-bar, prm-search-bar, prm-tags-search-bar {
 	padding-left: .85em;
@@ -74,4 +78,9 @@ prm-user-area .user-menu-button {
 /* Fix menu pop-over overlapping "signed in as" label */
 .__sm prm-main-menu[menu-type=full] div.prm-user-menu-content + div.settings-container {
 	margin-top: 2.5em;
+}
+
+/* Fix advanced search year box not looking editable */
+div.date-range-inputs > md-input-container:nth-of-type(3) {
+	margin-left: .5em;
 }

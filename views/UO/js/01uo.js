@@ -142,15 +142,18 @@ app.component('prmSearchBarAfter', {
       flexFirst.attr('flex', 100);
       flexFirst.addClass('flex-100');
       flexFirst.removeClass('flex-0');
-      flexFirst.attr('flex-lg', 40);
-      flexFirst.addClass('flex-lg-40');
+      flexFirst.attr('flex-lg', 20);
+      flexFirst.addClass('flex-lg-20');
       flexFirst.removeClass('flex-lg-10');
-      flexFirst.attr('flex-xl', 35);
-      flexFirst.addClass('flex-xl-35');
+      flexFirst.attr('flex-xl', 20);
+      flexFirst.addClass('flex-xl-20');
       flexFirst.removeClass('flex-xl-25');
 
-      flexSecond.attr('flex-lg', 75);
-      flexSecond.addClass('flex-lg-75');
+      flexSecond.attr('flex-md', 85);
+      flexSecond.addClass('flex-md-85');
+      flexSecond.removeClass('flex-md-75');
+      flexSecond.attr('flex-lg', 80);
+      flexSecond.addClass('flex-lg-80');
       flexSecond.removeClass('flex-lg-65');
       flexSecond.attr('flex-xl', 65);
       flexSecond.addClass('flex-xl-65');
