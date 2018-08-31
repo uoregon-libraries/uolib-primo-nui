@@ -23,13 +23,17 @@ prm-spinner.half-transparent .diamond {
 prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
 	background-color: #124734 !important;
 }
+md-toast, md-toast.md-default-theme {
+	background-color: #FFD200;
+	color: #006241;
+}
+prm-add-alert-toast md-toast .md-toast-content, prm-silent-login-alert-toast md-toast .md-toast-content, prm-timeout-toast md-toast .md-toast-content,
 .prm-alert-border, .bar.alert-bar {
-	background-color: #124734 !important;
-	color: #FFFFFF;
-	color: hsla(0,0%,100%,.65);
+	background-color: #FFD200;
+	color: #006241;
 	border: none;
 	border-radius: 0;
-	font-size: 1.2em;
+	font-size: 1.3em;
 }
 .md-button.button-confirm {
 	background-color: rgba(125, 125, 125, .2);
@@ -37,20 +41,34 @@ prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-backgrou
 
 /* Recolour sign in button */
 .bar prm-authentication .md-button,
-.bar button.dismiss-alert-button {
-	color: #FFFFFF;
-	color: hsla(0,0%,100%,.65);
+.bar button.dismiss-alert-button,
+.bar md-divider,
+/* Recolour toast buttons */
+prm-add-alert-toast md-toast .md-toast-content .md-button, prm-silent-login-alert-toast md-toast .md-toast-content .md-button, prm-timeout-toast md-toast .md-toast-content .md-button {
+	color: #000000;
+}
+.bar prm-authentication .md-button {
+	color: hsla(0,0%,100%,.85);
+	background-color: #006241;
+	padding-top: .4em;
 }
 .bar prm-authentication .md-button:hover:not([disabled]),
 .bar prm-authentication .md-button:focus:not([disabled]),
 .bar button.dismiss-alert-button:hover:not([disabled]),
 .bar button.dismiss-alert-button:focus:not([disabled])  {
-	color: #124734;
-	color: #FFFFFF;
-	background-color: rgba(76,180,69,.1);
+	color: #000000;
+	background-color: rgba(58,58,58, .25);
 }
-.bar md-divider {
-	border-color: #FFFFFF;
+.bar prm-authentication .md-button:hover:not([disabled]),
+.bar prm-authentication .md-button:focus:not([disabled]) {
+	color: #FFFFFF;
+	background-color: #007935;
+}
+/* Fix toast centering  */
+prm-add-alert-toast md-toast .md-toast-content,
+prm-silent-login-alert-toast md-toast .md-toast-content,
+prm-timeout-toast md-toast .md-toast-content {
+	width: auto;
 }
 
 /* Resize the clickable logo */
