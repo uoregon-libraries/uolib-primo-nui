@@ -1,0 +1,17 @@
+# Copy this to docker-compose.override.yml and customize as necessary
+version: '2'
+
+services:
+
+  server:
+    ### Uncomment this to use the prebuilt image rather than locally building
+    # image: budak/primo-explore-devenv
+
+    ### Uncomment this to use the sandbox rather than the real thing
+    # environment:
+      # PROXY: https://alliance-primo-sb.hosted.exlibrisgroup.com:443 # replace with url to your primo instance
+
+    # Tweak these ports as necessary
+    ports:
+      - 8003:8003 # used to view the application
+      - 3001:3001 # used to view the browsersync dashboard
