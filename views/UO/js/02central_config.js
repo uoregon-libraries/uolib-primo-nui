@@ -11,7 +11,7 @@ app.constant('showHideMoreInstOptions', {
 
 /* Add "report a problem" custom action */
 app.component('prmActionListAfter', {
-  template: '<custom-action name="report_problem" label="Report a Problem" index=10 icon="ic_report_problem_24px" icon-set="action" link="https://library.uoregon.edu/librarysearch/problem?permalink_path=primo-explore/fulldisplay%3Fvid='+LOCAL_VID+'%26docid={{docID}}"></custom-action>',
+  template: '<custom-action name="report_problem" label="Report a Problem" index=10 icon="ic_report_problem_24px" icon-set="action" link="https://library.uoregon.edu/librarysearch/problem?permalink_path=primo-explore/fulldisplay%3Fvid='+LOCAL_VID+'%26docid={{docID}}%26context={{context}}"></custom-action>',
   controller: 'prmActionListAfterController',
   bindings: {parentCtrl: '<'},
 });
@@ -24,4 +24,5 @@ app.controller('prmActionListAfterController', ['$scope', '$element', function (
   var docID = item.pnx.search.recordid[0];
 
   $scope.docID = docID;
+  $scope.context = item.context;
 }]);
