@@ -44,7 +44,7 @@ prm-search-result-thumbnail-container .fan-img {
 }
 
 /* Suppress main menu tooltips */
-md-tooltip.multi-row-tooltip {
+md-tooltip.multi-row-tooltip.slide-tooltip-anim {
 	display: none;
 }
 /* Suppress main menu show more pop-over sub-text */
