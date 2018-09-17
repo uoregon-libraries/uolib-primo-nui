@@ -290,14 +290,6 @@ addWorldcatButton({
 app.component('prmSearchResultAvailabilityLineAfter', {
   bindings: { parentCtrl: '<' },
   template: '\n<hathi-trust-availability></hathi-trust-availability>\n<browzine parent-ctrl="$ctrl.parentCtrl"></browzine>',
-  controller: function() {
-    /* Remove Summit Institutions for availability purposes */
-    if (this.parentCtrl.result.pnx.display.availlibrary) {
-      this.parentCtrl.result.pnx.display.availlibrary = this.parentCtrl.result.pnx.display.availlibrary.filter(function(elem) {
-        return elem.startsWith('$$IUO$$');
-      });
-    }
-  }
 });
 /* Browzine thumbnail overrides */
 app.component('prmSearchResultThumbnailContainerAfter', {
