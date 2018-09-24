@@ -52,6 +52,12 @@ prm-user-area .user-menu-button {
 #changUserStatus div {
 	display: inline-block;
 }
+/* fix user menu arrow placement */
+.md-button.button-with-menu-arrow .menu-arrow:after {
+    display: inline-block;
+    top: 1px;
+}
+
 
 /* Remove extra menu bar items in extremely small screens */
 @media screen and (max-width: 420px) {

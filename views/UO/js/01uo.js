@@ -64,15 +64,11 @@ app.component('prmFacetRangeAfter', {
   bindings: {parentCtrl: '<'},
   controller: 'prmFacetCollapseController',
 });
-app.controller('prmFacetCollapseController', ['$element', function($element) {
-  switch (this.parentCtrl.facetGroup.name) {
-    case 'tlevel':
-    case 'rtype':
-    case 'creator':
-      break;
-    default:
-      this.parentCtrl.facetGroup.facetGroupCollapsed = true;
-      break;
+app.controller('prmFacetCollapseController', ['$element', '$scope', function($element, $scope) {
+  var index = $scope.$parent.$parent.$parent.$parent.$parent.$index;
+
+  if (index >= 3) {
+    this.parentCtrl.facetGroup.facetGroupCollapsed = true;
   }
 }]);
 
