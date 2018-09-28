@@ -1,6 +1,6 @@
 var LOCAL_VID = "UO";
 
-var app = angular.module('viewCustom', ['angularLoad', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability', 'browzine']);
+var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability', 'browzine']);
 
 
 /****************************************************************************************************/
@@ -59,6 +59,7 @@ app.component('prmUserAreaExpandableAfter', {
 app.component('prmFacetExactAfter', {
   bindings: {parentCtrl: '<'},
   controller: 'prmFacetCollapseController',
+  template: '<external-search-facet-exact-after parent-ctrl="$ctrl.parentCtrl"></external-search-facet-exact-after>',
 });
 app.component('prmFacetRangeAfter', {
   bindings: {parentCtrl: '<'},
