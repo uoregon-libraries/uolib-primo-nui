@@ -59,7 +59,7 @@ app.component('prmUserAreaExpandableAfter', {
 app.component('prmFacetExactAfter', {
   bindings: {parentCtrl: '<'},
   controller: 'prmFacetCollapseController',
-  template: '<external-search-facet-exact-after parent-ctrl="$ctrl.parentCtrl"></external-search-facet-exact-after>',
+  template: '<external-search></external-search>'
 });
 app.component('prmFacetRangeAfter', {
   bindings: {parentCtrl: '<'},
