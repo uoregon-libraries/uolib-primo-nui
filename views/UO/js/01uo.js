@@ -260,7 +260,7 @@ function addWorldcatButton(opts) {
       prmSearchCtrl: '^prmSearch'
     },
     controller: 'worldcatButtonController',
-    template: '<md-card class="default-card _md zero-margin md-primoExplore-theme" ng-hide="getZeroResults()">\n            <md-card-title>' + opts.title + '</md-card-title>\n            <md-card-content>\n                <md-button class="md-raised" ng-click="searchWorldCat()">\n                Search WorldCat\n                </md-button>\n            </md-card-content>\n        </md-card>'
+    templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/worldCat.html',
   }).controller('worldcatButtonController', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
     var vm = this;
     vm.$onInit = function () {
@@ -279,7 +279,6 @@ function addWorldcatButton(opts) {
   }]);
 }
 addWorldcatButton({
-  title: 'Your search returned zero results, but more might be available by searching WorldCat.',
   link: 'https://uolibraries.on.worldcat.org/'
 });
 
