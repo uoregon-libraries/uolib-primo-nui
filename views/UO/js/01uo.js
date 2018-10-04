@@ -285,7 +285,7 @@ addWorldcatButton({
 /* HathiTrust link out and Browzine link outs */
 app.component('prmSearchResultAvailabilityLineAfter', {
   bindings: { parentCtrl: '<' },
-  template: '\n<hathi-trust-availability></hathi-trust-availability>\n<browzine parent-ctrl="$ctrl.parentCtrl"></browzine>',
+  template: '\n<hathi-trust-availability msg="Check availability in HathiTrust"></hathi-trust-availability>\n<browzine parent-ctrl="$ctrl.parentCtrl"></browzine>',
 });
 /* Browzine thumbnail overrides */
 app.component('prmSearchResultThumbnailContainerAfter', {
