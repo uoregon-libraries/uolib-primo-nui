@@ -68,7 +68,7 @@ app.component('prmFacetRangeAfter', {
 app.controller('prmFacetCollapseController', ['$element', '$scope', function($element, $scope) {
   var index = $scope.$parent.$parent.$parent.$parent.$parent.$index;
 
-  if (index >= 3) {
+  if (index >= 3 && this.parentCtrl.facetGroup.name != 'External Results') {
     this.parentCtrl.facetGroup.facetGroupCollapsed = true;
   }
 }]);

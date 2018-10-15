@@ -16,15 +16,18 @@ angular
         $scope.filters = Array.isArray(filter) ? filter : filter ? [filter] : false
       }],
       link: (scope, element, attrs, prmFacetCtrl) => {
-          if (prmFacetCtrl.facets[0].name !== 'External Results') {
-            prmFacetCtrl.facets.splice(parseInt(attrs.index), 0, {
-                name: 'External Results',
-                displayedType: 'exact',
-                limitCount: 0,
-                facetGroupCollapsed: false,
-                values: [],
-            })
-          }
+        var facetTitle = 'External Results';
+        var facetPos = 3;
+
+        if (prmFacetCtrl.facets[facetPos].name !== facetTitle) {
+          prmFacetCtrl.facets.splice(facetPos, 0, {
+              name: facetTitle,
+              displayedType: 'exact',
+              limitCount: 0,
+              facetGroupCollapsed: false,
+              values: [],
+          })
+        }
       },
     }
   });
