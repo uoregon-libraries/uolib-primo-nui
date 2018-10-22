@@ -75,3 +75,8 @@ prm-user-area .user-menu-button {
 div.date-range-inputs > md-input-container:nth-of-type(3) {
 	margin-left: .5em;
 }
+
+/* Remove Browsing page subtexts */
+h3.item-title span.text-in-brackets {
+	display: none;
+}
