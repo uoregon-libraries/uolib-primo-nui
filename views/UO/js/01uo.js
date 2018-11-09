@@ -112,18 +112,8 @@ app.component('prmExploreMainAfter',{
 /* Add Beta Qualtrics link */
 app.component('prmSearchBarAfter', {
   bindings: {parentCtrl: '<'},
-  template: '<br/><hr/>' +
-  '<p style="text-align: center;"> \
-    <a target="_blank" ng-if="!$ctrl.parentCtrl.advancedSearch" md-ink-ripple="#FFF" class="librarysearch-survey zero-margin button-with-icon md-button md-primoExplore-theme md-ink-ripple" style="font-size:1.25em; color:white; white-space:normal;" href="https://oregon.qualtrics.com/jfe/form/SV_4SktAK5aP13RQzz">\
-      Tell us what you think about our new LibrarySearch interface <prm-icon external-link="" style="color:#FFF" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new"></prm-icon>\
-    </a> \
-    <a target="_blank" ng-if="$ctrl.parentCtrl.advancedSearch" md-ink-ripple="#000" class="librarysearch-survey-dark zero-margin button-with-icon md-button md-primoExplore-theme md-ink-ripple" style="font-size:1.25em; color:black; white-space:normal;" href="https://oregon.qualtrics.com/jfe/form/SV_4SktAK5aP13RQzz">\
-      Tell us what you think about our new LibrarySearch interface <prm-icon external-link="" style="color:#000" icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new"></prm-icon>\
-    </a> \
-  </p><hr/>\
-  <div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/primo-explore/search?vid='+LOCAL_VID+'&sortby=rank"> <span>LibrarySearch</span></a></div>',
+  template: '<div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/primo-explore/search?vid='+LOCAL_VID+'&sortby=rank"> <span>LibrarySearch</span></a></div>',
   controller: function($scope, $element) {
-    // var link = '';
     this.$postLink = function() {
       var row = '<div layout="row" class="layout-row flex-100"></div>'
       row = angular.element(row);
