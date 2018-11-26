@@ -42,7 +42,7 @@ app.value('searchTargets', [{
       'any': 'kw',
       'title': 'ti',
       'creator': 'au',
-      'subject': 'su',
+      'sub': 'su',
       'isbn': 'bn',
       'issn': 'n2'
     };
