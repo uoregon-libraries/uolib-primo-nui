@@ -78,5 +78,5 @@ div.date-range-inputs > md-input-container:nth-of-type(3) {
 
 /* Remove Browsing page subtexts */
 h3.item-title span.text-in-brackets {
-	display: none;
+	opacity: .55;
 }
