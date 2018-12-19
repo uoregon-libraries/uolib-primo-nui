@@ -162,6 +162,7 @@ input[type="number"] {
 /* Fix does_not_exist_in_my_institution_available color issue */
 /* And recolour checked out text */
 [class*=does_not_exist],
+[class*=no_],
 .availability-status.unavailable_in_institution,
 .availability-status.unavailable_in_maininstitution_more {
 	color: #b84d00;
