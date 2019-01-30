@@ -1,6 +1,6 @@
 var LOCAL_VID = "UO";
 
-var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability', 'browzine']);
+var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
 
 
 /****************************************************************************************************/
@@ -275,10 +275,14 @@ addWorldcatButton({
 /* HathiTrust link out and Browzine link outs */
 app.component('prmSearchResultAvailabilityLineAfter', {
   bindings: { parentCtrl: '<' },
-  template: '\n<hathi-trust-availability msg="Check availability in HathiTrust"></hathi-trust-availability>\n<browzine parent-ctrl="$ctrl.parentCtrl"></browzine>',
+  template: '\n<hathi-trust-availability msg="Check availability in HathiTrust"></hathi-trust-availability>',
+  controller: 'prmSearchResultAvailabilityLineAfterController'
 });
 /* Browzine thumbnail overrides */
 app.component('prmSearchResultThumbnailContainerAfter', {
   bindings: { parentCtrl: '<' },
   template: '<browzine-thumbnail parent-ctrl="$ctrl.parentCtrl"></browzine-thumbnail>'
 });
+ app.controller('prmSearchResultAvailabilityLineAfterController', function($scope) {
+   window.browzine.primo.searchResult($scope);
+ });
