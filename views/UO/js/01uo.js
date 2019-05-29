@@ -163,7 +163,7 @@ app.component('prmSearchBarAfter', {
       setTimeout(scopes_delay_hack, 2000); /* 2 second delay */
       function scopes_delay_hack() {
         angular.element(document).ready(function () {
-          var elem = document.querySelectorAll('md-option[value="uo_curriculum"], md-option[value="uo_docs"], md-option[value="uo_juvenile"], md-option[value="uo_knightref"], md-option[value="uo_music"], md-option[value="uo_scua"]');
+          var elem = document.querySelectorAll('md-option[value="uo_curriculum"], md-option[value="uo_design_special_collections"], md-option[value="uo_docs"], md-option[value="uo_juvenile"], md-option[value="uo_knightref"], md-option[value="uo_music"], md-option[value="uo_scua"]');
           angular.element(elem).remove();
         });
       }
