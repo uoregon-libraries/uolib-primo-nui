@@ -1,6 +1,10 @@
 /* Anchor facets from scrolling */
 prm-facet .primo-scrollbar {
-	position: relative !important;
+  position: relative !important;
+  top: 0 !important;
+}
+div.primo-scrollbar.is-stuck + div {
+  display: none;
 }
 
 /* wrap overflow text in facets */
