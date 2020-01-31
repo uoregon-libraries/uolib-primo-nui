@@ -8,6 +8,8 @@ Ensure the latest versions of `docker` and `docker-compose` are installed.
 
 ### Setup
 
+Copy `docker-compose.override-example.yml` to `docker-compose.override.yml` to access the interface on port 8003, and find a few other options available.
+
 `views/UO` is our view code package. If you ever need to start fresh you can re-download it from the "back office", or acquire a fresh one from [here](https://github.com/ExLibrisGroup/primo-explore-package).
 
 to add a view to the development environment, ensure that the line:
@@ -23,6 +25,10 @@ appears in your `docker-compose.yml`, where the path on the left is the absolute
 To start developing, open a terminal in this directory and run:
 ```sh
 docker-compose up -d
+```
+On your first run and anytime you change views/UO/package.json, you will need to install your node packages:
+```sh
+docker-compose run --rm server bash -c "cd primo-explore/custom/UO/ && npm install"
 ```
 
 - You can edit the files in your package's folder and changes will be made in real-time.

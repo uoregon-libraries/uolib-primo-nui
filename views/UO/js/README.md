@@ -8,8 +8,15 @@
   - When the package is created `docker-compose run server gulp create-package`
   - Manually with `docker-compose run server gulp custom-js`
   - Automatically on .js file change while the container is running
+- Writing customizations is VERY difficult to explain and wrap your head around
+  - Find the directive commented as `Add My Illiad Account link` in `01uo.js`
+    - This is an example of how to add some HTML to an element
+  - Find the directive commented as `Collapse facets` in `01uo.js`
+    - This is an example of how to add some level of JS custom behavior
+  - You'll very likely need to use the command in `showDirectives.txt` to display the directives you want to hook into. You'll also be doing a lot of exploring in the browser console, just to find SOMETHING that looks like it has the functionality you want to edit. This can easily include moving up and down what feels like a mirror of the DOM in controllers, eg: `$scope.$parent.$parent.$parent.$parent.$ctrl.actionsIcons.peerreviewed.icon`
+- All the below has been taken from ExLibris documentation
 
-##JavaScript documentation
+## JavaScript documentation
 
 - When you want to add functionality to your Primo installation you will be using Angular Directives.
 
@@ -49,7 +56,7 @@ Example:
 
 
 
-##Concept
+## Concept
 
 - When You want to add your own JavaScript functionality - you will need to plug-in to placeholder Directives we added to the system.
 - Those directive are added as the last child element for every Primo directive (defined by the `prm-` prefix)
@@ -60,7 +67,7 @@ Example:
 
 
 
-##Recipes/Examples:
+## Recipes/Examples:
 
 # Note:
 
