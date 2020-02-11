@@ -110,7 +110,7 @@ app.component('prmExploreMainAfter',{
 });
 
 
-/* Add Beta Qualtrics link */
+/* Deal with LibrarySearch branding in searchbox */
 app.component('prmSearchBarAfter', {
   bindings: {parentCtrl: '<'},
   template: '<div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/primo-explore/search?vid='+LOCAL_VID+'&sortby=rank"> <span>LibrarySearch</span></a></div>',
