@@ -40,7 +40,9 @@ On your first run and anytime you change views/UO/package.json, you will need
 to install your node packages and restart the docker container:
 
 ```sh
-docker-compose run --rm server bash -c "cd primo-explore/custom/UO/ && npm install" && docker-compose down && docker-compose -d
+docker-compose run --rm server bash -c "cd primo-explore/custom/UO/ && npm install"
+docker-compose down
+docker-compose up -d
 ```
 
 - You can edit the files in your package's folder and changes will be made in
