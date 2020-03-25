@@ -87,7 +87,7 @@ the container.
 To create a package, open a terminal in this directory and run:
 
 ```sh
-docker-compose run server gulp create-package
+docker-compose run --rm server gulp create-package
 ```
 
 Select a package when prompted. the zip file will appear in this folder.
