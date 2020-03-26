@@ -1,99 +1,55 @@
 # UO Primo New UI
 
-## Prerequisites:
+## Setup
 
-Ensure the latest versions of `docker` and `docker-compose` are installed.
+Copy `docker-compose.override-example.yml` to `docker-compose.override.yml` and
+tweak as needed.  If copied as-is, the proxy app will be reachable at
+`http://127.0.0.1/primo-explore/search?vid=UO` and the `custom` directory will
+be mounted into the running container for real-time changes.
 
-## Usage:
-
-### Setup
-
-Copy `docker-compose.override-example.yml` to `docker-compose.override.yml` to
-access the interface on port 8003, and find a few other options available.
-
-`views/UO` is our view code package. If you ever need to start fresh you can
+`custom/UO` is our view code package. If you ever need to start fresh you can
 re-download it from the "back office", or acquire a fresh one from
 [here](https://github.com/ExLibrisGroup/primo-explore-package).
 
-to add a view to the development environment, ensure that the line:
+## Views
 
-```yml
-volumes:
-  - /path/to/my/view/code/:/home/node/primo-explore-devenv/custom/NAME_OF_VIEW
+Everything in `custom` is build into the docker image, and if the override was
+copied as-is, it's mounted in the container for real-time changes.  But views
+are weird: you have to explicitly choose the view by overriding the environment
+variable in `docker-compose.override.yml`, e.g.:
+
+```yaml
+    environment:
+      - VIEW=UO_TEST
 ```
 
-appears in your `docker-compose.yml`, where the path on the left is the
-absolute path to your view code folder.
+Then you have to change the view in your URL, e.g.,
+`http://127.0.0.1/primo-explore/search?vid=UO_TEST`.
 
-- To select a view, edit the `VIEW` property in `docker-compose.yml` to match
-  the name you provided in the `volumes` stanza, e.g. `NAME_OF_VIEW`.
-- To select a proxy server to view live primo results, edit the `PROXY`
-  property in `docker-compose.yml`.
+## Development
 
-To start developing, open a terminal in this directory and run:
+On your first run, build the docker images: `docker-compose build`.  If you
+didn't opt to mount `custom` into the image via the override file, you'll have
+to rebuild the image whenever you change code.
 
-```sh
-docker-compose up -d
-```
+To run the server, just start up the stack: `docker-compose up -d`.
 
-On your first run and anytime you change views/UO/package.json, you will need
-to install your node packages and restart the docker container:
+Any time you change `custom/UO/package.json`, you will need to restart the
+container so the npm modules are installed:
 
 ```sh
-docker-compose run --rm server bash -c "cd primo-explore/custom/UO/ && npm install"
 docker-compose down
 docker-compose up -d
 ```
 
-- You can edit the files in your package's folder and changes will be made in
-  real-time.
-- You can observe the view using a browser at
-  `localhost:8003/primo-explore/search?vid=NAME_OF_VIEW`.
+You can edit the other files in your package's folder and changes will be made
+in real-time if you copied the override file as-is, or on an image rebuild.
 
-### Changing views
-
-First, ensure that the line:
-
-```yml
-volumes:
-  - /path/to/my/other/view/:/home/node/primo-explore-devenv/custom/NAME_OF_OTHER_VIEW
-```
-
-appears in your `docker-compose.yml`, providing access to the new view.
-
-To change the currently displayed view, edit the `VIEW` property in
-`docker-compose.yml`, open a terminal in the project directory, and run:
-
-```sh
-docker-compose restart
-```
-
-- Making changes to `VIEW` or `PROXY` will require the above restart command to
-  take effect.
-- You can add as many views as you like to the `volumes` stanza.
-- You can add a central package by mounting it in the above manner and naming
-  it `CENTRAL_PACKAGE`.
-
-### Creating packages
-
-First, make sure that the line:
-
-```yml
-volumes:
-  - ./:/home/node/primo-explore-devenv/packages
-```
-
-appears in your `docker-compose.yml` file, so that packages will appear outside
-the container.
-
-To create a package, open a terminal in this directory and run:
+### Creating deploy packages
 
 ```sh
 docker-compose run --rm server gulp create-package
 ```
 
-Select a package when prompted. the zip file will appear in this folder.
-
-## Credits
-
-Credit to [thatbudakguy](https://github.com/thatbudakguy) for his [Primo New UI Customization Docker Development Environment](https://github.com/thatbudakguy/primo-explore-devenv-docker) which this repo is based on
+Select a package when prompted (typically this will be UO), and you'll have a
+new zip file in your local `packages` directory.

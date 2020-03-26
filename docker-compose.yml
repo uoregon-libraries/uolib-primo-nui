@@ -1,14 +1,10 @@
 version: '2'
 
 services:
-
   server:
     build: .
     environment:
-      PROXY: https://alliance-primo.hosted.exlibrisgroup.com:443 # replace with url to your primo instance
-      VIEW: UO # replace with name of your view as it appears below in "volumes"
+      - PROXY=https://alliance-primo-sb.hosted.exlibrisgroup.com:443
+      - VIEW=UO
     volumes:
-      - ./:/home/node/primo-explore-devenv/packages # used to access generated package .zip files
-      - ./views/UO:/home/node/primo-explore-devenv/primo-explore/custom/UO # replace with path to your view folder
-      - ./CENTRAL_PACKAGE:/home/node/primo-explore-devenv/primo-explore/custom/CENTRAL_PACKAGE # optional - replace with path to your central package folder
-      - ./scripts:/home/node/scripts
+      - ./packages:/home/node/primo-explore-devenv/packages

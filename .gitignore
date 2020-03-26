@@ -1,8 +1,7 @@
-.idea/
-*.zip
-/views/**/custom1.css
-/views/**/custom.js
-/views/**/node_modules/*
+/packages/*.zip
+/custom/**/custom1.css
+/custom/**/custom.js
+/custom/**/node_modules/*
 
 # Ignore docker overrides
 /docker-compose.override.yml

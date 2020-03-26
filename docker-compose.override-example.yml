@@ -2,16 +2,21 @@
 version: '2'
 
 services:
-
   server:
-    ### Uncomment this to use the prebuilt image rather than locally building
-    # image: budak/primo-explore-devenv
+    # Example override for using the sandbox proxy instead of prod
+    environment:
+      - PROXY=https://alliance-primo.hosted.exlibrisgroup.com:443
 
-    ### Uncomment this to use the sandbox rather than the real thing
-    # environment:
-      # PROXY: https://alliance-primo-sb.hosted.exlibrisgroup.com:443 # replace with url to your primo instance
-
-    # Tweak these ports as necessary
+    # Expose ports to your host - this is pretty much a must, but it's in the
+    # override because ports defined in the main docker-compose.yml cannot be
+    # removed, just added to
     ports:
-      - 8003:8003 # used to view the application
-      - 3001:3001 # used to view the browsersync dashboard
+      # The http server is on port 8003, so we map that to 80 on the host machine
+      - 80:8003
+      # 3001 serves up a "browsersync" thing.  Use at your peril.
+      #- 3001:3001
+
+    # If you want real-time changes, this mounts all custom stuff (e.g.,
+    # `custom/UO`) into the running container
+    volumes:
+      - ./custom:/home/node/primo-explore-devenv/primo-explore/custom
