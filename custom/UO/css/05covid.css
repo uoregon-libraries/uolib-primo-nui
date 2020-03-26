@@ -1,0 +1,14 @@
+#covid-19 {
+  margin: 16px;
+  padding: 8px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border: 1px solid grey;
+  background: #fffcc4;
+  color: black;
+  text-align: center;
+}
+
+#covid-19 h2 {
+  font-weight: bold;
+}
