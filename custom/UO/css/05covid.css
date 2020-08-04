@@ -10,11 +10,13 @@
   background: #fffcc4;
   color: black;
   text-align: center;
-  width: 50%;
-  display: inline-block;
 }
 
 #covid-19 h2 {
   font-size: 1.2em;
   font-weight: bold;
+  display: inline-block;
+}
+#covid-19 h2:after {
+  content: ": ";
 }
