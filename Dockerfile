@@ -10,7 +10,6 @@ RUN npm install
 RUN npm rebuild node-sass
 
 COPY ./custom /home/node/primo-explore-devenv/primo-explore/custom/
-COPY ./scripts /home/node/scripts
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
