@@ -21,7 +21,7 @@ app.controller('prmActionListAfterController', ['$scope', '$element', function (
   if (item instanceof Array) {
     item = item[0];
   }
-  var docID = item.pnx.search.recordid[0];
+  var docID = item.pnx.control.recordid[0];
 
   $scope.docID = docID;
   $scope.context = item.context;
