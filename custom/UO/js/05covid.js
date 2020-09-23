@@ -1,11 +1,13 @@
 //Add Emergency Banner
 app.component('prmBackToLibrarySearchButtonAfter', {
   template: `
-    <aside class="covid-wrapper">
-      <div id="covid-19">
-        <h2>COVID-19 Notice</h2>
-        <span>UO Libraries buildings are closed, but we're here to help!</span>
-        <a href="https://library.uoregon.edu/get-help">Get help from UO Libraries</a>
+    <aside class="site-alert">
+      <div class="info">
+        <div class="hours-notice">
+          UO Libraries building hours and services vary - please check the
+          Libraries homepage for today's hours. For more information, <a
+          href="/get-help">get help from UO Libraries</a>.
+        </div>
       </div>
     </aside>
   `,

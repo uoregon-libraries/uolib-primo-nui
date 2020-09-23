@@ -1,22 +1,74 @@
-.covid-wrapper {
-  text-align: center;
-}
-#covid-19 {
-  margin: 16px;
-  padding: 8px;
-  font-size: 1.2em;
-  font-weight: bold;
-  border: 1px solid grey;
-  background: #fffcc4;
-  color: black;
-  text-align: center;
+@media (max-width: 799px) {
+  .site-alert {
+    margin-top: 16px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+  }
 }
 
-#covid-19 h2 {
-  font-size: 1.2em;
-  font-weight: bold;
-  display: inline-block;
+@media (min-width: 800px) {
+  .site-alert {
+    margin-top: 16px;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+  }
 }
-#covid-19 h2:after {
-  content: ": ";
+
+.info {
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: rgb(217, 237, 247);
+  background-image: url("https://library.uoregon.edu/sites/all/modules/site_alert/css/icon-alert.png");
+  background-origin: padding-box;
+  background-position: 1% 50%;
+  background-position-x: 1%;
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  border-bottom-color: rgb(188, 232, 241);
+  border-bottom-style: solid;
+  border-bottom-width: 0.833333px;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  border-image-slice: 100%;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgb(188, 232, 241);
+  border-left-style: solid;
+  border-left-width: 0.833333px;
+  border-right-color: rgb(188, 232, 241);
+  border-right-style: solid;
+  border-right-width: 0.833333px;
+  border-top-color: rgb(188, 232, 241);
+  border-top-style: solid;
+  border-top-width: 0.833333px;
+  box-sizing: border-box;
+  color: rgb(49, 112, 143);
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 32px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+}
+
+.hours-notice {
+  box-sizing: border-box;
+  color: rgb(49, 112, 143);
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  padding-bottom: 10px;
+  padding-left: 55px;
+  padding-right: 10px;
+  padding-top: 10px;
 }
