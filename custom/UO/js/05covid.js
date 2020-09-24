@@ -5,8 +5,8 @@ app.component('prmBackToLibrarySearchButtonAfter', {
       <div class="info">
         <div class="hours-notice">
           UO Libraries building hours and services vary - please check the
-          Libraries homepage for today's hours. For more information, <a
-          href="/get-help">get help from UO Libraries</a>.
+          <a href="https://library.uoregon.edu/">Libraries homepage</a> for today's hours. For more information,
+          <a href="https://library.uoregon.edu/get-help">get help from UO Libraries</a>.
         </div>
       </div>
     </aside>
