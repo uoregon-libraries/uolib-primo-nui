@@ -94,14 +94,6 @@ prm-main-menu[menu-type=menu] .md-button{
 prm-search-bar .switch-to-advanced, prm-search-bar .switch-to-simple {
 	font-size: 1em;
 }
-/* Darken button hover/focus background */
-.md-button._md-focused:not([disabled]),
-.md-button.hovered:not([disabled]),
-.md-button.md-focused:not([disabled]),
-.md-button:focus:not([disabled]),
-.md-button:hover:not([disabled]) {
-	background-color: rgba(58,58,58, .25);
-}
 .md-button.neutralized-button:hover,
 .md-button.neutralized-button:focus {
 	background-color: transparent;
