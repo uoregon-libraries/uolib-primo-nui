@@ -18,10 +18,10 @@ prm-spinner.prm-hue1.overlay-cover.light-on-dark:after,
 prm-topbar .top-nav-bar,
 md-backdrop.md-opaque,
 prm-spinner.half-transparent .diamond {
-	background-color: #124734;
+	background-color: #104735;
 }
 prm-user-area md-fab-toolbar.md-is-open md-fab-trigger ._md-fab-toolbar-background {
-	background-color: #124734 !important;
+	background-color: #104735 !important;
 }
 md-toast, md-toast.md-default-theme {
 	background-color: #FFD200;
@@ -120,7 +120,7 @@ prm-search-result-list prm-personalize-results-button {
 }
 /* Recolour link titles */
 prm-brief-result .item-title span {
-	color: #124734;
+	color: #104735;
 }
 /* Recolour location links */
 [class*=available]>span,
@@ -139,10 +139,10 @@ prm-brief-result .item-title span {
 }
 /* Recolour recommendation titles */
 .recommendations-title {
-	color: #124734;
+	color: #104735;
 }
 .recommendations-title.hover>span>span {
-	color: #124734;
+	color: #104735;
 	background-color: rgba(76,180,69,.1);
 	box-shadow: inset 0 -1px 0 0 rgba(76,180,69,.5);
 }
@@ -156,7 +156,7 @@ prm-brief-result .item-title span {
 }
 .md-button.button-as-link.link-alt-color:hover:not([disabled]),
 .md-button.button-as-link.link-alt-color:focus:not([disabled]) {
-	color: #124734;
+	color: #104735;
 	background-color: rgba(76,180,69,.1);
 }
 /* Recolour links */
