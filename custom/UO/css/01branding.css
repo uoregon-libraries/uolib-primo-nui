@@ -122,10 +122,6 @@ prm-search-result-list prm-personalize-results-button {
 prm-brief-result .item-title span {
 	color: #124734;
 }
-/* Recolour services links */
-#services-index span {
-	color: #0f7d00;
-}
 /* Recolour location links */
 [class*=available]>span,
 [class*=available]+span {
@@ -152,11 +148,11 @@ prm-brief-result .item-title span {
 }
 /* Recolour filters dropdown arrow */
 .section-title prm-icon {
-	color: #0f7d00;
+	color: #104735;
 }
 /* Recolour filters Show More button */
 .md-button.button-as-link.link-alt-color, .md-button.button-link {
-	color: #0f7d00;
+	color: #104735;
 }
 .md-button.button-as-link.link-alt-color:hover:not([disabled]),
 .md-button.button-as-link.link-alt-color:focus:not([disabled]) {
@@ -165,11 +161,11 @@ prm-brief-result .item-title span {
 }
 /* Recolour links */
 a {
-	color: #0f7d00;
+	color: #104735;
 }
 a:hover,
 a:focus {
-	color: #0f7d00;
+	color: #104735;
 	background-color: rgba(76,180,69,.1);
 	box-shadow: inset 0 -1px 0 0 rgba(40,145,34,.5);
 }
@@ -186,11 +182,11 @@ prm-alphabet-toolbar a.md-primoExplore-theme {
 }
 /* Recolour arrows */
 .md-button.arrow-link-button [link-arrow] {
-	color: #0f7d00;
+	color: #104735;
 }
 /* Recolour results actions */
 .result-item-actions .md-icon-button {
-	color: #0f7d00;
+	color: #104735;
 }
 /* Recolour username */
 .prm-secondary-color.prm-hue4,
@@ -205,13 +201,13 @@ prm-main-menu[menu-type=full] md-card .md-headline {
 	color: #fff;
 }
 button.md-button.md-primary {
-	color: #0f7d00;
+	color: #104735;
 }
 /* Recolour buttons */
 button.md-button.md-primary:focus:not([disabled]), button.md-button.md-primary:hover:not([disabled]), button.md-button.md-primary:focus:not([disabled])
 button.md-button.button-link:focus:not([disabled]), button.md-button.button-link:hover:not([disabled]), button.md-button.button-link:focus:not([disabled]) {
-	color: #124734;
-	background-color: rgba(76,180,69,.1);
+  color: #fff;
+  background-color: #104735; /* "Legacy Green" */
 }
 
 /* Make all action buttons ("Send to" area) consistent and semi-UO-themed */
@@ -228,21 +224,34 @@ button.md-button.button-link:focus:not([disabled]), button.md-button.button-link
   color: #fff;
   background-color: #104735; /* "Legacy Green" */
 }
-/* Recolour advanced search "clear" button */
+
+/* Recolour advanced search "clear" button - using hsl to take the UO yellow
+ * and lighten/darken it so things are a bit more brand-friendly than just a
+ * random yellowish hue somebody picks */
 button.md-button.button-notice {
-	color: #c59400;
+  color: hsl(52, 99%, 15%);
+  background-color: hsl(52, 99%, 85%);
 }
 button.md-button.button-notice:focus:not([disabled]), button.md-button.button-notice:hover:not([disabled]), button.md-button.button-notice:focus:not([disabled]) {
-	color: #c59400;
-	background-color: rgba(197, 148, 0, .1);
+  background-color: hsl(52, 99%, 25%);
+  color: #fff;
 }
+
+/* Make "Online Access" and other in-search-result links more consistent */
+.ext_not_restricted, .fulltext, .fulltext_linktorsrc,
+.fulltext_linktorsrc_newspaper, .fulltext_linktorsrc_topic,
+.fulltext_newspaper, .fulltext_topic, .not_restricted, .prm-positive,
+.status-available, [class*="available"], [class*="FT"] {
+  color: #104735;
+}
+
 /* Recolour text-highlight */
 .text-highlight, mark {
 	box-shadow: inset 0 -0.3em 0 0 #ffd200;
 }
 /* Recolour Peer Review icon */
 .peer-reviewed-mark-icon {
-	color: #0f7d00 !important;
+	color: #104735 !important;
 }
 /* Recolour media content type label */
 prm-brief-result-container .media-content-type {
