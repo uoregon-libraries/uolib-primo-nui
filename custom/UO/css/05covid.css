@@ -72,3 +72,11 @@
   padding-right: 10px;
   padding-top: 10px;
 }
+
+.hours-notice a {
+  text-decoration: underline;
+}
+.hours-notice a:focus, .hours-notice a:hover {
+  color: #fff;
+  background-color: #104735
+}
