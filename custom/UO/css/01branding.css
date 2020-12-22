@@ -323,3 +323,14 @@ md-list-item.md-clickable a:hover > .item-title span, md-list-item.md-clickable 
   background-color: #104735;
   color: #fff;
 }
+
+/* Fix facet hover styling */
+prm-facet-exact .section-title:focus, prm-facet-exact .section-title:hover {
+  /* Yes, we have to use !important because primo forces "transparent" on us
+   * via !important.  Two wrongs and all that.... */
+  background-color: #104735 !important;
+}
+prm-facet-exact .section-title:focus span, prm-facet-exact .section-title:hover span,
+prm-facet-exact .section-title:focus prm-icon, prm-facet-exact .section-title:hover prm-icon {
+  color: #fff;
+}
