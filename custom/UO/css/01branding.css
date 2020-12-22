@@ -334,3 +334,22 @@ prm-facet-exact .section-title:focus span, prm-facet-exact .section-title:hover 
 prm-facet-exact .section-title:focus prm-icon, prm-facet-exact .section-title:hover prm-icon {
   color: #fff;
 }
+
+/* Fix backdrop coloring */
+.md-dialog-container.fixed-container {
+  background-color: unset;
+}
+md-backdrop.md-opaque {
+  opacity: 0.9;
+}
+
+/* Fix contrast issues on hover/focus with new (fixed) backdrops */
+.md-dialog-container button.full-view-navigation {
+  /* this ensures consistent spacing - without this rule the hover/focus causes
+   * things to "jitter" */
+  border: 3px solid transparent;
+}
+.md-dialog-container button.full-view-navigation:hover,
+.md-dialog-container button.full-view-navigation:focus {
+  border: 3px solid #fff;
+}
