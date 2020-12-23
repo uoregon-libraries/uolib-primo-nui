@@ -353,3 +353,20 @@ md-backdrop.md-opaque {
 .md-dialog-container button.full-view-navigation:focus {
   border: 3px solid #fff;
 }
+
+/* Fix colors in dark dialogs */
+md-dialog.light-on-dark-dialog .md-list[class$="-line"] md-list-item.list-login .md-button,
+md-dialog.light-on-dark-dialog .md-list md-list-item.list-login .md-button,
+md-dialog.light-on-dark-dialog md-list md-list-item.list-login .md-button {
+  color: hsl(146, 100%, 32%);
+}
+/* This is necessary to just let the border be the focus/hover indicator,
+ * rather than changing to the super-bright cyan */
+md-dialog.light-on-dark-dialog .md-list[class$="-line"] md-list-item.list-login .md-button:hover:not([disabled]),
+md-dialog.light-on-dark-dialog .md-list[class$="-line"] md-list-item.list-login .md-button:focus:not([disabled]),
+md-dialog.light-on-dark-dialog .md-list md-list-item.list-login .md-button:hover:not([disabled]),
+md-dialog.light-on-dark-dialog .md-list md-list-item.list-login .md-button:focus:not([disabled]),
+md-dialog.light-on-dark-dialog md-list md-list-item.list-login .md-button:hover:not([disabled]),
+md-dialog.light-on-dark-dialog md-list md-list-item.list-login .md-button:focus:not([disabled]) {
+  color: hsl(146, 100%, 32%);
+}
