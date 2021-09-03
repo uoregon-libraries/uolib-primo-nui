@@ -26,6 +26,17 @@ variable in `docker-compose.override.yml`, e.g.:
 Then you have to change the view in your URL, e.g.,
 `http://127.0.0.1/primo-explore/search?vid=UO_TEST`.
 
+## Alerts
+
+When something critical happens and a Primo-wide alert is needed, copy
+`alert.js` to `custom/UO/js/99alert.js` and change the example text copied from
+COVID messaging so it's a realistic example.
+
+Keep the `<aside>` and `<div>` elements intact, just change the text so that
+styles continue to work.
+
+When the alert period is over, delete that file.
+
 ## Development
 
 On your first run, build the docker images: `docker-compose build`.  If you
