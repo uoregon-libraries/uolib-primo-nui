@@ -1,0 +1,19 @@
+/* Standalong login header background so logo is visible */
+prm-stand-alone-login .login-header {
+  background-color: #104735;
+}
+prm-stand-alone-login .login-header a {
+  border: 3px solid;
+}
+prm-stand-alone-login .login-header a:hover, prm-stand-alone-login .login-header a:focus {
+  border: 3px solid blue;
+}
+
+/* This is horrifying, but necessary for the standalone card to work. There
+ * doesn't seem to be a selector to make this not suck without being horribly
+ * specific in ways that are likely to bite us down the road (e.g., using
+ * nth-child).
+ */
+prm-stand-alone-login .login-card md-card-content prm-login prm-login-item > .md-list-item-text > p {
+  color: #000 !important;
+}
