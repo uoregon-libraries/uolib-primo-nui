@@ -123,7 +123,7 @@ app.component('prmExploreMainAfter',{
 /* Deal with LibrarySearch branding in searchbox */
 app.component('prmSearchBarAfter', {
   bindings: {parentCtrl: '<'},
-  template: '<div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/primo-explore/search?vid='+LOCAL_VID+'&sortby=rank"> <span>LibrarySearch</span></a></div>',
+  template: '<div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/discovery/search?vid='+LOCAL_VID+'&lang=en"> <span>LibrarySearch</span></a></div>',
   controller: function($scope, $element) {
     this.$postLink = function() {
       var row = '<div layout="row" class="layout-row flex-100"></div>'
