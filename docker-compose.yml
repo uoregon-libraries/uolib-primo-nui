@@ -4,7 +4,7 @@ services:
   server:
     build: .
     environment:
-      - PROXY=https://alliance-primo-sb.hosted.exlibrisgroup.com:443
-      - VIEW=UO
+      - PROXY=https://alliance-uoregon.primo.exlibrisgroup.com:443
+      - VIEW=01ALLIANCE_UO-UO
     volumes:
       - ./packages:/home/node/primo-explore-devenv/packages
