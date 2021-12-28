@@ -1,6 +1,6 @@
 /* This applies to the Primo View named "UO" note we only use this one public
  * view - MA*/
-var LOCAL_VID = "UO";
+var LOCAL_VID = "01ALLIANCE_UO:UO";
 
 var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
 
