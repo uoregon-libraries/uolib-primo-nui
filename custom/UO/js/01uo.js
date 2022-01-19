@@ -1,3 +1,5 @@
+/* This applies to the Primo View named "UO" note we only use this one public
+ * view - MA*/
 var LOCAL_VID = "UO";
 
 var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
@@ -17,6 +19,9 @@ app.controller('prmTopNavBarLinksAfterController', ['$scope', '$element', functi
   $scope.pCtrl = pCtrl
 
   /*** This is a hack of ExLibris code to manipulate the number of nav items ***/
+  /* This adjusts the number of top of screen menu items to show depending on
+   * size of screen viewed upon, I think using the lg md in the code etc
+   * instead of flex 75 etc - MA */
   // Overwrite ExLibris function to control number of menu items to show at large breakpoint
   this.parentCtrl.showCount = function() {
     return pCtrl.$mdMedia("lg") ? 5 : pCtrl.$mdMedia("md") ? 4 : pCtrl.$mdMedia("sm") ? 0 : pCtrl.$mdMedia("xs") ? 0 : 5
@@ -46,6 +51,7 @@ app.component('prmTopbarAfter', {
 /*
   Display menu button in top nav for small breakpoint
  */
+ /* Menu item is "..." - MA */
 app.component('prmUserAreaExpandableAfter', {
   bindings: {parentCtrl: '<'},
   templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/showMenuButton.html',
@@ -56,6 +62,8 @@ app.component('prmUserAreaExpandableAfter', {
 
 
 /* Collapse facets */
+/* See https://www.orbiscascade.org/programs/systems/pcsg/primo-toolkit/external-search-facet/
+ * for the external_search explanation. Not sure what external-search is - MA */
 app.component('prmFacetExactAfter', {
   bindings: {parentCtrl: '<'},
   controller: 'prmFacetCollapseController',
@@ -75,6 +83,8 @@ app.controller('prmFacetCollapseController', ['$element', '$scope', function($el
 
 
 /* Change peer-reviewed icon */
+/* peer reviewed icon appears under a bib record, and is two green figures next
+ * to the words peer reviewed - MA */
 app.component('prmIconAfter', {
   bindings: {parentCtrl: '<'},
   controller: 'prmIconAfterController',
@@ -159,6 +169,7 @@ app.component('prmSearchBarAfter', {
       The search scope DOM elements just can't be configured until they're loaded.
       This hack lets you delay a static amount of time. Very race conditiony, DO NOT USE.
     */
+    /* I'm guessing Tamara's suggestion might help here? - MA*/
     if (!this.parentCtrl.advancedSearch) {
       setTimeout(scopes_delay_hack, 2000); /* 2 second delay */
       function scopes_delay_hack() {
@@ -174,6 +185,9 @@ app.component('prmSearchBarAfter', {
 
 
 /* Add My Illiad Account link */
+/* I can't see where this is doing anything.  There is a link to
+ * https://library.uoregon.edu/borrowing/ill once you sign into your account
+ * and look at "My Account" - MA */
 app.component('prmAccountAfter', {
   templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/illLink.html',
   controller: function($scope) {
@@ -189,6 +203,7 @@ app.component('prmAccountAfter', {
 
 
 /* Re-order Detailed view items */
+/* do a search, open a record, and then append &noCustomization=true to the url to see how the sections order looks without this customization */
 app.component('prmFullViewServiceContainerAfter', {
   bindings: {parentCtrl: '<'},
   controller: function ($element) {
@@ -220,6 +235,7 @@ app.component('prmFullViewServiceContainerAfter', {
 
 
 /* Un-suppress collection scopes in advanced search */
+/* not sure what this is actually doing.  when you select advanced search, the search scope dropdown above the search filters includes the items listed below.  But is also does when you select no customization */
 app.component('prmAdvancedSearchAfter', {
   controller: 'prmAdvancedSearchAfterController',
 }).controller('prmAdvancedSearchAfterController', ['$scope', function ($scope) {
@@ -243,6 +259,9 @@ app.component('prmAdvancedSearchAfter', {
 
 
 /* Worldcat button for zero-result searches */
+/* old link below.  Use
+ * https://www.orbiscascade.org/programs/systems/pcsg/primo-toolkit/worldcat-button-for-zero-result-searches/
+ * We may be able to do this from Alma in VE. - MA */
 // Worldcat button documentation: https://www.orbiscascade.org/blog/9/?bid=649
 function addWorldcatButton(opts) {
   app.component('prmNoSearchResultAfter', {
