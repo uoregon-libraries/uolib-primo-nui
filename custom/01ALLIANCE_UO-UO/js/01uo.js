@@ -258,40 +258,6 @@ app.component('prmAdvancedSearchAfter', {
   }
 }]);
 
-
-/* Worldcat button for zero-result searches */
-/* old link below.  Use
- * https://www.orbiscascade.org/programs/systems/pcsg/primo-toolkit/worldcat-button-for-zero-result-searches/
- * We may be able to do this from Alma in VE. - MA */
-// Worldcat button documentation: https://www.orbiscascade.org/blog/9/?bid=649
-function addWorldcatButton(opts) {
-  app.component('prmNoSearchResultAfter', {
-    require: {
-      prmSearchCtrl: '^prmSearch'
-    },
-    controller: 'worldcatButtonController',
-    templateUrl: LocalViewPath+'/html/worldCat.html',
-  }).controller('worldcatButtonController', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
-    var vm = this;
-    vm.$onInit = function () {
-      $scope.wcBase = opts.link;
-      $scope.$prmSearchCtrl = vm.prmSearchCtrl;
-      $scope.getZeroResults = function () {
-        if ($scope.$prmSearchCtrl.searchService.searchDone && $scope.$prmSearchCtrl.searchService.searchStateService.resultObject.info) {
-          $scope.searchTerm = $scope.$prmSearchCtrl.searchService.searchFieldsService.mainSearch;
-          return $scope.$prmSearchCtrl.searchService.searchStateService.resultObject.info.total !== 0;
-        }
-      };
-      $scope.searchWorldCat = function () {
-        window.open($scope.wcBase + "search?databaseList=&queryString=" + $scope.searchTerm, '_blank');
-      };
-    };
-  }]);
-}
-addWorldcatButton({
-  link: 'https://uolibraries.on.worldcat.org/'
-});
-
 /* HathiTrust link out and Browzine link outs */
 app.component('prmSearchResultAvailabilityLineAfter', {
   bindings: { parentCtrl: '<' },
