@@ -4,12 +4,12 @@
 
 Copy `docker-compose.override-example.yml` to `docker-compose.override.yml` and
 tweak as needed.  If copied as-is, the proxy app will be reachable at
-`http://127.0.0.1/primo-explore/search?vid=UO` and the `custom` directory will
-be mounted into the running container for real-time changes.
+`http://localhost:8003/discovery/search?vid=01ALLIANCE_UO:UO` and the `custom`
+directory will be mounted into the running container for real-time changes.
 
-`custom/UO` is our view code package. If you ever need to start fresh you can
-re-download it from the "back office", or acquire a fresh one from
-[here](https://github.com/ExLibrisGroup/primo-explore-package).
+`custom/01ALLIANCE_UO-UO` is our view code package. If you ever need to start
+fresh you can re-download it from the "back office", or acquire a fresh one
+from [here](https://github.com/ExLibrisGroup/primo-explore-package).
 
 ## Views
 
@@ -24,12 +24,17 @@ variable in `docker-compose.override.yml`, e.g.:
 ```
 
 Then you have to change the view in your URL, e.g.,
-`http://127.0.0.1/primo-explore/search?vid=UO_TEST`.
+`http://localhost:8003/discovery/search?vid=01ALLIANCE_UO:UOTEST`.
+
+Note that this isn't a "sticky" parameterIn the JavaScript we embed links and
+we hard-code the view because links have to include that `vid` parameter.
+You'll have to watch (and possibly re-hack) your URL if you're trying to test a
+different view and you start clicking around.
 
 ## Alerts
 
 When something critical happens and a Primo-wide alert is needed, copy
-`alert.js` to `custom/UO/js/99alert.js` and change the example text copied from
+`alert.js` to `custom/01ALLIANCE_UO-UO/js/99alert.js` and change the example text copied from
 COVID messaging so it's a realistic example.
 
 Keep the `<aside>` and `<div>` elements intact, just change the text so that
@@ -45,8 +50,8 @@ to rebuild the image whenever you change code.
 
 To run the server, just start up the stack: `docker-compose up -d`.
 
-Any time you change `custom/UO/package.json`, you will need to restart the
-container so the npm modules are installed:
+Any time you change `custom/01ALLIANCE_UO-UO/package.json`, you will need to
+restart the container so the npm modules are installed:
 
 ```sh
 docker-compose down
