@@ -1,6 +1,7 @@
 /* This applies to the Primo View named "UO" note we only use this one public
  * view - MA*/
-var LOCAL_VID = "01ALLIANCE_UO:UO";
+var LocalViewID = "01ALLIANCE_UO:UO";
+var LocalViewPath = '/discovery/custom/01ALLIANCE_UO-UO';
 
 var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
 
@@ -54,7 +55,7 @@ app.component('prmTopbarAfter', {
  /* Menu item is "..." - MA */
 app.component('prmUserAreaExpandableAfter', {
   bindings: {parentCtrl: '<'},
-  templateUrl: '/discovery/custom/'+LOCAL_VID+'/html/showMenuButton.html',
+  templateUrl: LocalViewPath+'/html/showMenuButton.html',
   controller: function($scope, $element) {
     $scope.pCtrl = $scope.$parent.$parent.$$childHead.$ctrl;
   }
@@ -123,7 +124,7 @@ app.component('prmExploreMainAfter',{
 /* Deal with LibrarySearch branding in searchbox */
 app.component('prmSearchBarAfter', {
   bindings: {parentCtrl: '<'},
-  template: '<div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/discovery/search?vid='+LOCAL_VID+'&lang=en"> <span>LibrarySearch</span></a></div>',
+  template: '<div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/discovery/search?vid='+LocalViewID+'&lang=en"> <span>LibrarySearch</span></a></div>',
   controller: function($scope, $element) {
     this.$postLink = function() {
       var row = '<div layout="row" class="layout-row flex-100"></div>'
@@ -189,7 +190,7 @@ app.component('prmSearchBarAfter', {
  * https://library.uoregon.edu/borrowing/ill once you sign into your account
  * and look at "My Account" - MA */
 app.component('prmAccountAfter', {
-  templateUrl: '/discovery/custom/'+LOCAL_VID+'/html/illLink.html',
+  templateUrl: LocalViewPath+'/html/illLink.html',
   controller: function($scope) {
     this.$postLink = function() {
        var header = document.getElementsByTagName('prm-account')[0].querySelector('h1.toolbar-title').parentElement;
@@ -269,7 +270,7 @@ function addWorldcatButton(opts) {
       prmSearchCtrl: '^prmSearch'
     },
     controller: 'worldcatButtonController',
-    templateUrl: '/discovery/custom/'+LOCAL_VID+'/html/worldCat.html',
+    templateUrl: LocalViewPath+'/html/worldCat.html',
   }).controller('worldcatButtonController', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
     var vm = this;
     vm.$onInit = function () {
