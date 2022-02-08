@@ -6,7 +6,7 @@ angular
     return {
       require: '^^prmFacet',
       restrict: 'E',
-      templateUrl: '/primo-explore/custom/' + LOCAL_VID + '/html/externalSearch.html',
+      templateUrl: LocalViewPath + '/html/externalSearch.html',
       controller: ['$scope', '$location', 'searchTargets', function ($scope, $location, searchTargets) {
         $scope.name = $scope.$ctrl.parentCtrl.facetGroup.name
         $scope.targets = searchTargets
