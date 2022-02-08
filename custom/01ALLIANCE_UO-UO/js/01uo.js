@@ -54,7 +54,7 @@ app.component('prmTopbarAfter', {
  /* Menu item is "..." - MA */
 app.component('prmUserAreaExpandableAfter', {
   bindings: {parentCtrl: '<'},
-  templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/showMenuButton.html',
+  templateUrl: '/discovery/custom/'+LOCAL_VID+'/html/showMenuButton.html',
   controller: function($scope, $element) {
     $scope.pCtrl = $scope.$parent.$parent.$$childHead.$ctrl;
   }
@@ -189,7 +189,7 @@ app.component('prmSearchBarAfter', {
  * https://library.uoregon.edu/borrowing/ill once you sign into your account
  * and look at "My Account" - MA */
 app.component('prmAccountAfter', {
-  templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/illLink.html',
+  templateUrl: '/discovery/custom/'+LOCAL_VID+'/html/illLink.html',
   controller: function($scope) {
     this.$postLink = function() {
        var header = document.getElementsByTagName('prm-account')[0].querySelector('h1.toolbar-title').parentElement;
@@ -269,7 +269,7 @@ function addWorldcatButton(opts) {
       prmSearchCtrl: '^prmSearch'
     },
     controller: 'worldcatButtonController',
-    templateUrl: '/primo-explore/custom/'+LOCAL_VID+'/html/worldCat.html',
+    templateUrl: '/discovery/custom/'+LOCAL_VID+'/html/worldCat.html',
   }).controller('worldcatButtonController', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
     var vm = this;
     vm.$onInit = function () {
