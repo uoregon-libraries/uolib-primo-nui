@@ -1,14 +1,3 @@
-/* Hide/Show Other Institutions */
-app.component('prmAlmaMoreInstAfter', {
-  template: '<toggle-institutions />',
-  bindings: {parentCtrl: '<'},
-});
-app.constant('showHideMoreInstOptions', {
-  default_state: 'hidden',
-  show_label: 'Show Summit Libraries',
-  hide_label: 'Hide Summit Libraries'
-});
-
 /* Add "report a problem" custom action */
 app.component('prmActionListAfter', {
   template: '<custom-action name="report_problem" label="Report a Problem" index=2 icon="ic_report_problem_24px" icon-set="action" link="https://library.uoregon.edu/librarysearch/problem?permalink_path=primo-explore/fulldisplay%3Fvid='+LocalViewID+'%26docid={{docID}}%26context={{context}}"></custom-action>',
