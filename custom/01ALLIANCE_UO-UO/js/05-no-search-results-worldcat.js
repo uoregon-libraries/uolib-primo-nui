@@ -3,7 +3,7 @@
 //
 // See https://www.orbiscascade.org/programs/systems/pcsg/primo-toolkit/worldcat-button-for-zero-result-searches/
 function addWorldcatButton(opts){
-  app.component('prmSearchResultListAfter', {
+  app.component('prmNoSearchResultAfter', {
     require: {
       prmSearchCtrl: '^prmSearch'
     },
