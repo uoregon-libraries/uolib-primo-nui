@@ -85,15 +85,20 @@ app.controller('prmFacetCollapseController', ['$element', '$scope', function($el
 /* peer reviewed icon appears under a bib record, and is two green figures next
  * to the words peer reviewed - MA */
 app.component('prmIconAfter', {
-  bindings: {parentCtrl: '<'},
-  controller: 'prmIconAfterController',
+  controller: 'prmIconAfterController'
 });
-app.controller('prmIconAfterController', ['$scope', '$element', function ($scope, $element) {
-  if (this.parentCtrl.iconDefinition == 'peer-reviewed') {
-    this.parentCtrl.svgIconSet = 'social';
-    this.parentCtrl.iconDefinition = 'ic_people_24px';
-    $scope.$parent.$parent.$parent.$parent.$ctrl.actionsIcons.peerreviewed.iconSet = 'social';
-    $scope.$parent.$parent.$parent.$parent.$ctrl.actionsIcons.peerreviewed.icon = 'ic_people_24px';
+app.controller('prmIconAfterController', ['$scope', function ($scope) {
+  var parentCtrl = $scope.$parent.$ctrl;
+  if (parentCtrl.iconDefinition == 'peer-reviewed') {
+    // Overwrite default icon set and definition
+    parentCtrl.$element
+      .attr('svg-icon-set', 'social')
+      .attr('icon-definition', 'ic_people_24px');
+    // Recompile prm-icon
+    var injector = parentCtrl.$element.injector();
+    injector.invoke(function($compile){
+      return $compile(parentCtrl.$element)($scope);
+    });
   }
 }]);
 
