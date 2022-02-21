@@ -20,9 +20,6 @@ app.controller('prmTopNavBarLinksAfterController', ['$scope', '$element', functi
   $scope.pCtrl = pCtrl
 
   /*** This is a hack of ExLibris code to manipulate the number of nav items ***/
-  /* This adjusts the number of top of screen menu items to show depending on
-   * size of screen viewed upon, I think using the lg md in the code etc
-   * instead of flex 75 etc - MA */
   // Overwrite ExLibris function to control number of menu items to show at large breakpoint
   this.parentCtrl.showCount = function() {
     return pCtrl.$mdMedia("lg") ? 5 : pCtrl.$mdMedia("md") ? 4 : pCtrl.$mdMedia("sm") ? 0 : pCtrl.$mdMedia("xs") ? 0 : 5
@@ -49,10 +46,11 @@ app.component('prmTopbarAfter', {
     flexSecond.addClass('flex-md-25');
   }
 });
+
 /*
-  Display menu button in top nav for small breakpoint
+  Display "..." button for showing various hidden links when breakpoint is
+  small enough to hide them, but large enough to show other links
  */
- /* Menu item is "..." - MA */
 app.component('prmUserAreaExpandableAfter', {
   bindings: {parentCtrl: '<'},
   templateUrl: LocalViewPath+'/html/showMenuButton.html',
