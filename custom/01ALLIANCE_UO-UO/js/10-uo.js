@@ -102,28 +102,6 @@ app.controller('prmIconAfterController', ['$scope', function ($scope) {
   }
 }]);
 
-
-/*
-  Show more than 10 results
-  https://developers.exlibrisgroup.com/blog/Change-the-Number-of-Results-Loaded-in-Primo-NUI
-*/
-app.component('prmExploreMainAfter',{
-  bindings: {parentCtrl: '<'},
-  controller: function($scope){
-    var pageSize = 10;
-    //adjust these values to control the number of results you want to display
-    this.parentCtrl.searchService.cheetah.PAGE_SIZE = pageSize;
-    this.parentCtrl.searchService.searchStateService.PAGE_SIZE = pageSize;
-    this.parentCtrl.itemsPerPage = pageSize;
-    this.parentCtrl.PAGE_SIZE = pageSize;
-    this.parentCtrl.searchService.searchStateService.PAGE_SIZE = pageSize;
-    this.parentCtrl.searchService.cheetah.configurationUtil.searchStateService.resultsBulkSize = pageSize;
-
-    this.parentCtrl.configurationUtil.systemConfiguration["FE UI – Scrolling Threshold"] = pageSize;   //change according to the number of results loaded
-  }
-});
-
-
 /* Deal with LibrarySearch branding in searchbox */
 app.component('prmSearchBarAfter', {
   bindings: {parentCtrl: '<'},
