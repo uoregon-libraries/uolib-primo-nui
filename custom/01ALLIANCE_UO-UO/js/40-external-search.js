@@ -34,20 +34,20 @@ angular
 
 app.value('searchTargets', [{
   "name": "Worldcat",
-  "url": "https://uolibraries.on.worldcat.org/search?",
-  "img": "https://alliance-primo.hosted.exlibrisgroup.com/primo-explore/custom/WSU/img/worldcat-logo.png",
-  "alt": "Worldcat Logo",
+  "url": "https://uolibraries.on.worldcat.org/search?queryString=",
+  "img": LocalViewPath+"/img/worldcat-logo.png",
+  "alt": "",
   mapping: function mapping(queries, filters) {
     var query_mappings = {
       'any': 'kw',
       'title': 'ti',
       'creator': 'au',
-      'sub': 'su',
+      'subject': 'su',
       'isbn': 'bn',
       'issn': 'n2'
     };
     try {
-      return 'queryString=' + queries.map(function (part) {
+      return queries.map(function (part) {
         var terms = part.split(',');
         var type = query_mappings[terms[0]] || 'kw';
         var string = terms[2] || '';
@@ -61,8 +61,8 @@ app.value('searchTargets', [{
 }, {
   "name": "Google Scholar",
   "url": "https://scholar.google.com/scholar?q=",
-  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png",
-  "alt": "Google Scholar Logo",
+  "img": LocalViewPath+"/img/google-logo.png",
+  "alt": "",
   mapping: function mapping(queries, filters) {
     try {
       return queries.map(function (part) {
