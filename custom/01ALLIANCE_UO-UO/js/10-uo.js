@@ -147,18 +147,21 @@ app.component('prmSearchBarAfter', {
     }
 
     /*
-      Race condition hack
-      The search scope DOM elements just can't be configured until they're loaded.
-      This hack lets you delay a static amount of time. Very race conditiony, DO NOT USE.
+      The search scope DOM elements just can't be configured until they're
+      loaded.
+
+      Race condition hack - keep checking until the elements can be
+      removed. We only do this every 500ms to avoid pegging CPU since Primo
+      could change on us at any time and make this code just run forever.
     */
-    /* I'm guessing Tamara's suggestion might help here? - MA*/
     if (!this.parentCtrl.advancedSearch) {
-      setTimeout(scopes_delay_hack, 2000); /* 2 second delay */
+      var scopeHackInterval = setInterval(scopes_delay_hack, 500);
       function scopes_delay_hack() {
-        angular.element(document).ready(function () {
-          var elem = document.querySelectorAll('md-option[value="uo_curriculum"], md-option[value="uo_design_special_collections"], md-option[value="uo_docs"], md-option[value="uo_juvenile"], md-option[value="uo_knightref"], md-option[value="uo_music"], md-option[value="uo_scua"]');
+        var elem = document.querySelectorAll('md-option[value="JuvenileCollection"], md-option[value="SCUA"]');
+        if (elem.length > 0) {
           angular.element(elem).remove();
-        });
+          clearInterval(scopeHackInterval);
+        }
       }
     }
 
