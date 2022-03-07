@@ -169,10 +169,8 @@ app.component('prmSearchBarAfter', {
 });
 
 
-/* Add My Illiad Account link */
-/* I can't see where this is doing anything.  There is a link to
- * https://library.uoregon.edu/borrowing/ill once you sign into your account
- * and look at "My Account" - MA */
+/* Add My Illiad Account link: shows up on the "My Account" page above the menu
+ * area, just after "My Account" */
 app.component('prmAccountAfter', {
   templateUrl: LocalViewPath+'/html/illLink.html',
   controller: function($scope) {
@@ -187,8 +185,10 @@ app.component('prmAccountAfter', {
 });
 
 
-/* Re-order Detailed view items */
-/* do a search, open a record, and then append &noCustomization=true to the url to see how the sections order looks without this customization */
+/*
+ * Re-order sections in the detailed item view: puts "How to get it" above
+ * "Send to", and "Details" above the "Links" section
+ */
 app.component('prmFullViewServiceContainerAfter', {
   bindings: {parentCtrl: '<'},
   controller: function ($element) {
