@@ -219,29 +219,6 @@ app.component('prmFullViewServiceContainerAfter', {
 });
 
 
-/* Un-suppress collection scopes in advanced search */
-/* not sure what this is actually doing.  when you select advanced search, the search scope dropdown above the search filters includes the items listed below.  But is also does when you select no customization */
-app.component('prmAdvancedSearchAfter', {
-  controller: 'prmAdvancedSearchAfterController',
-}).controller('prmAdvancedSearchAfterController', ['$scope', function ($scope) {
-  // Generate style element to unhide advanced scopes
-  var style = document.createElement('style');
-  style.id = 'advancedScopesUnhide';
-  style.innerHTML = 'md-option[value="uo_curriculum"], md-option[value="uo_docs"], md-option[value="uo_juvenile"], md-option[value="uo_knightref"], md-option[value="uo_music"], md-option[value="uo_scua"] { display: flex; }';
-
-  // Add style element on advanced search open
-  this.$onInit = function() {
-    document.body.appendChild(style);
-  }
-  // Remove style element on advanced search close
-  this.$onDestroy = function() {
-    document.body.removeChild(style);
-
-    var elem = document.querySelectorAll('md-option[value="uo_curriculum"], md-option[value="uo_docs"], md-option[value="uo_juvenile"], md-option[value="uo_knightref"], md-option[value="uo_music"], md-option[value="uo_scua"]');
-    angular.element(elem).remove();
-  }
-}]);
-
 /* HathiTrust link out and Browzine link outs */
 app.component('prmSearchResultAvailabilityLineAfter', {
   bindings: { parentCtrl: '<' },
