@@ -219,12 +219,15 @@ app.component('prmFullViewServiceContainerAfter', {
 });
 
 
-/* HathiTrust link out and Browzine link outs */
+/* HathiTrust link out - shows up on detail view as well as search results
+ * where availability is displayed. Search for "American Medical Association."
+ * to see this working */
 app.component('prmSearchResultAvailabilityLineAfter', {
   bindings: { parentCtrl: '<' },
   template: '\n<hathi-trust-availability msg="Check availability in HathiTrust"></hathi-trust-availability>',
   controller: 'prmSearchResultAvailabilityLineAfterController'
 });
+
 /* Browzine thumbnail overrides */
 app.component('prmSearchResultThumbnailContainerAfter', {
   bindings: { parentCtrl: '<' },
