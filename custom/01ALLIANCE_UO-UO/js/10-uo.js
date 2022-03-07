@@ -227,12 +227,3 @@ app.component('prmSearchResultAvailabilityLineAfter', {
   template: '\n<hathi-trust-availability msg="Check availability in HathiTrust"></hathi-trust-availability>',
   controller: 'prmSearchResultAvailabilityLineAfterController'
 });
-
-/* Browzine thumbnail overrides */
-app.component('prmSearchResultThumbnailContainerAfter', {
-  bindings: { parentCtrl: '<' },
-  template: '<browzine-thumbnail parent-ctrl="$ctrl.parentCtrl"></browzine-thumbnail>'
-});
- app.controller('prmSearchResultAvailabilityLineAfterController', function($scope) {
-   window.browzine.primo.searchResult($scope);
- });
