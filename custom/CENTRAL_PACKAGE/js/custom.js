@@ -1,7 +1,7 @@
 /*
-* EX LIBRIS TEST
+* 
 *	Orbis Cascade Alliance Central Package
-*	Last updated: 2022-01-19
+*	Last updated: 2022-02-07
 *	
 * Included customizations:
 *   Insert custom action (updated 2018-11-07)
@@ -9,8 +9,8 @@
 *   Toggle advanced search in mobile display (updated 2018-10-09)
 *   Favorite signin warning (updated 2021-01-19)
 *   Enlarge Covers (Updated 2021-12-06)
-*   Text a Call Number (Updated 2021-12-06)
-*   External Search (Updated 2022-01-03)
+*   Text a Call Number (Updated 2022-02-07)
+*   External Search (Updated 2022-02-04)
 *   Force Login (Added 2020-10-22)
 *   eShelf Links (Added 2020-11-03)
 *   Hathi Trust Availability (Updated 2022-01-06)
@@ -492,8 +492,7 @@ angular
           if (!(angular.isUndefined(item.delivery.holding) || item.delivery.holding === null) && item.delivery.holding.length > 0) {
             
             // Get VID
-            var inst_vid = angular.uppercase($location.search().vid);
-            var vid = inst_vid.substring(inst_vid.indexOf(':')+1);
+            var vid = angular.uppercase($location.search().vid);
  
             // Get title
             var title = encodeURIComponent(item.pnx.display.title[0]);
@@ -505,7 +504,7 @@ angular
             var holdings = new Array();
             for (var h = 0; h < item.delivery.holding.length; h++) {
               var holding = item.delivery.holding[h];
-              holdings.push(holding.libraryCode + ';' + holding.subLocation + ';' + holding.callNumber);
+              holdings.push(holding.libraryCode + ';' + holding.subLocation.replace(/;/g,'%3B') + ';' + holding.callNumber);
             }
             var joined_holdings = encodeURIComponent(holdings.join('|'));
 
@@ -624,7 +623,7 @@ angular.module('externalSearch', [])
     }
   })
   .component('externalSearchContents', {
-    template: '<div ng-if="$ctrl.checkName()"><div ng-hide="$ctrl.checkCollapsed()"><div class="section-content animate-max-height-variable"><div class="md-chips md-chips-wrap"><div ng-repeat="target in targets" aria-live="polite" class="md-chip animate-opacity-and-scale facet-element-marker-local4"><div class="md-chip-content layout-row" role="button" tabindex="0"><strong dir="auto" title="{{ target.name }}"><a ng-href="{{ target.url + target.mapping(queries, filters) }}" target="_blank"><img ng-src="{{ target.img }}" width="22" height="22" alt="{{ target.alt }}" style="vertical-align:middle;"> {{ target.name }}</a></strong></div></div></div></div></div></div>',
+    template: '<div id="pcsg-es" ng-if="$ctrl.checkName()"><div ng-hide="$ctrl.checkCollapsed()"><div class="section-content animate-max-height-variable"><div class="md-chips md-chips-wrap"><div ng-repeat="target in targets" aria-live="polite" class="md-chip animate-opacity-and-scale facet-element-marker-local4"><div class="md-chip-content layout-row" role="button" tabindex="0"><strong dir="auto" title="{{ target.name }}"><a ng-href="{{ target.url + target.mapping(queries, filters) }}" target="_blank"><img ng-src="{{ target.img }}" width="22" height="22" alt="{{ target.alt }}" style="vertical-align:middle;"> {{ target.name }}</a></strong></div></div></div></div></div></div>',
     controller: function ($scope, $location, externalSearchOptions) {
       $scope.facetName = externalSearchOptions.facetName;
       $scope.targets = externalSearchOptions.searchTargets;
@@ -639,9 +638,22 @@ angular.module('externalSearch', [])
       this.checkCollapsed = function () {
         return this.parentCtrl.facetGroup.facetGroupCollapsed;
       }
+      var externalSearchDiv;
+      var externalSearchSelector = "prm-facet div.primo-scrollbar div.sidebar-inner-wrapper div.sidebar-section prm-facet-group div[data-facet-group='" + $scope.facetName + "']";
+      function findExternalSearchDiv() {
+        var id = setInterval(innerFindExternalSearchDiv, 100);
+        function innerFindExternalSearchDiv() {
+          if (document.querySelector(externalSearchSelector)) {
+            externalSearchDiv = document.querySelector(externalSearchSelector).parentElement.parentElement;
+            externalSearchDiv.classList.add("pcsg-external-search");
+            clearInterval(id);
+          }
+        }
+      }
+      findExternalSearchDiv();
     }
   })
-  .factory('externalSearchService', function (externalSearchOptions) { 
+  .factory('externalSearchService', function (externalSearchOptions) {
     return {
       get controller() {
         return this.prmFacetCtrl || false;
@@ -674,7 +686,7 @@ angular.module('externalSearch', [])
       { // WorldCat
         "name": "Worldcat",
         "url": "https://www.worldcat.org/search?q=",
-        "img": "/primo-explore/custom/01ALLIANCE_NETWORK-CENTRAL_PACKAGE/img/worldcat-logo.png",
+        "img": "/discovery/custom/01ALLIANCE_NETWORK-CENTRAL_PACKAGE/img/worldcat-logo.png",
         "alt": "Worldcat Logo",
         mapping: function mapping(queries, filters) {
           var query_mappings = {
@@ -701,7 +713,7 @@ angular.module('externalSearch', [])
       { // Google Scholar
         "name": "Google Scholar",
         "url": "https://scholar.google.com/scholar?q=",
-        "img": "/primo-explore/custom/01ALLIANCE_NETWORK-CENTRAL_PACKAGE/img/google-logo.png",
+        "img": "/discovery/custom/01ALLIANCE_NETWORK-CENTRAL_PACKAGE/img/google-logo.png",
         "alt": "Google Scholar Logo",
         mapping: function mapping(queries, filters) {
           try {
