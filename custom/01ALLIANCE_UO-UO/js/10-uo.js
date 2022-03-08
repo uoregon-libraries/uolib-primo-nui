@@ -1,7 +1,14 @@
 var LocalViewID = "01ALLIANCE_UO:UO";
 var LocalViewPath = '/discovery/custom/01ALLIANCE_UO-UO';
 
-var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
+var app = angular.module('viewCustom', ['angularLoad', 'externalSearchUO', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
+
+// This is required to make our overwritten externalSearch work - see
+// 00-replace-external-search.js
+app
+.component('prmFacetAfter', {template: '<external-search-facet />'})
+.component('prmPageNavMenuAfter', {template: '<external-search-pagenav />' })
+.component('prmFacetExactAfter', {template: '<external-search-contents />' });
 
 /* Top Nav link customizations,  */
 app.controller('prmTopNavBarLinksAfterController', ['$scope', '$element', function ($scope, $element) {
@@ -47,27 +54,6 @@ app.component('prmUserAreaExpandableAfter', {
     $scope.pCtrl = $scope.$parent.$parent.$$childHead.$ctrl;
   }
 })
-
-
-/* Collapse facets */
-/* See https://www.orbiscascade.org/programs/systems/pcsg/primo-toolkit/external-search-facet/
- * for the external_search explanation. Not sure what external-search is - MA */
-app.component('prmFacetExactAfter', {
-  bindings: {parentCtrl: '<'},
-  controller: 'prmFacetCollapseController',
-  template: '<external-search></external-search>'
-});
-app.component('prmFacetRangeAfter', {
-  bindings: {parentCtrl: '<'},
-  controller: 'prmFacetCollapseController',
-});
-app.controller('prmFacetCollapseController', ['$element', '$scope', function($element, $scope) {
-  var index = $scope.$parent.$parent.$parent.$parent.$parent.$index;
-
-  if (index >= 3 && this.parentCtrl.facetGroup.name != 'External Results') {
-    this.parentCtrl.facetGroup.facetGroupCollapsed = true;
-  }
-}]);
 
 
 /* Change peer-reviewed icon */
