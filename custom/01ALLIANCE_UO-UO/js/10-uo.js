@@ -1,18 +1,7 @@
-/* This applies to the Primo View named "UO" note we only use this one public
- * view - MA*/
 var LocalViewID = "01ALLIANCE_UO:UO";
 var LocalViewPath = '/discovery/custom/01ALLIANCE_UO-UO';
 
 var app = angular.module('viewCustom', ['angularLoad', 'externalSearch', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
-
-
-/****************************************************************************************************/
-
-    /*In case of CENTRAL_PACKAGE - comment out the below line to replace the other module definition*/
-
-    /*var app = angular.module('centralCustom', ['angularLoad']);*/
-
-/****************************************************************************************************/
 
 /* Top Nav link customizations,  */
 app.controller('prmTopNavBarLinksAfterController', ['$scope', '$element', function ($scope, $element) {
