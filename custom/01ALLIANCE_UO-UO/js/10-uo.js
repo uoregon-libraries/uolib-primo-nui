@@ -1,6 +1,3 @@
-var LocalViewID = "01ALLIANCE_UO:UO";
-var LocalViewPath = '/discovery/custom/01ALLIANCE_UO-UO';
-
 var app = angular.module('viewCustom', ['angularLoad', 'externalSearchUO', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
 
 // This is required to make our overwritten externalSearch work - see
