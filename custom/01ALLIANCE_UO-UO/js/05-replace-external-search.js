@@ -59,9 +59,9 @@ angular
       addExtSearch: function addExtSearch() {
         var xx = this;
         var checkExist = setInterval(function () {
-          if (xx.prmFacetCtrl.facetService.results[0] && xx.prmFacetCtrl.facetService.results[0].name != xx.externalSearchOptions.facetName) {
+          if (xx.prmFacetCtrl.facetService.results[3] && xx.prmFacetCtrl.facetService.results[3].name != xx.externalSearchOptions.facetName) {
             if (xx.prmFacetCtrl.facetService.results.name !== xx.externalSearchOptions.facetName) {
-              xx.prmFacetCtrl.facetService.results.unshift({
+              xx.prmFacetCtrl.facetService.results.splice(3, 1, {
                 name: externalSearchOptions.facetName,
                 displayedType: 'exact',
                 limitCount: 0,
