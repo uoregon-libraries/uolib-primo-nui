@@ -60,6 +60,10 @@ app.controller('prmSearchResultAvailabilityLineAfterController', function($scope
 
     articleAcceptedManuscriptArticleLinkViaUnpaywallEnabled: true,
     articleAcceptedManuscriptArticleLinkViaUnpaywallText: "Read Article (Accepted Manuscript via Unpaywall)",
+
+    // This should ensure unpaywall links work; see
+    // https://github.com/uoregon-libraries/uolib-primo-nui/issues/52
+    enableLinkOptimizer: false,
   };
 
   browzine.script = document.createElement("script");
