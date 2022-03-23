@@ -7,6 +7,19 @@
  * information they provided as of March 21, 2022.
  */
 
+// This is not what thirdiron has in their codebase - we changed the way
+// browzine is integrated because HathiTrust already uses
+// "prmSearchResultAvailabilityLineAfter". If we don't change one of them to
+// use a different location, the systems have a conflict and neither item shows
+// up.
+app.component('prmSearchResultThumbnailContainerAfter', {
+  bindings: { parentCtrl: '<' },
+  template: '<browzine-thumbnail parent-ctrl="$ctrl.parentCtrl"></browzine-thumbnail>'
+});
+app.controller('prmSearchResultAvailabilityLineAfterController', function($scope) {
+  window.browzine.primo.searchResult($scope);
+});
+
 // Begin BrowZine - Primo Integration...
   window.browzine = {
     api: "https://public-api.thirdiron.com/public/v1/libraries/38",
@@ -52,13 +65,4 @@
   browzine.script = document.createElement("script");
   browzine.script.src = "https://s3.amazonaws.com/browzine-adapters/primo/browzine-primo-adapter.js";
   document.head.appendChild(browzine.script);
-
-  app.controller('prmSearchResultAvailabilityLineAfterController', function($scope) {
-    window.browzine.primo.searchResult($scope);
-  });
-
-  app.component('prmSearchResultAvailabilityLineAfter', {
-    bindings: { parentCtrl: '<' },
-    controller: 'prmSearchResultAvailabilityLineAfterController'
-  });
 // ... End BrowZine - Primo Integration
