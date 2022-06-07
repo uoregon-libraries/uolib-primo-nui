@@ -1,0 +1,23 @@
+/*Hide Ellipsis Page (aka Show More) Sign In*/
+prm-main-menu div.settings-container.align-self-stretch.layout-gt-xs-row.layout-align-center-start {
+  display: none;
+}
+/*Hide QR Code and My Favorites Shortcut*/
+div:nth-child(1) prm-search-bookmark-filter {
+  display: none;
+}
+div:nth-child(2) prm-search-bookmark-filter {
+  display: none;
+}
+/*Hide User Menu Sign In*/
+prm-user-area-expandable {
+  display: none;
+}
+/*Hide Alert Bar Sign In*/
+.alert-bar {
+  display:none;
+}
+/*Hide Login Card Sign In*/
+prm-stand-alone-login md-card {
+  display: none;
+}
