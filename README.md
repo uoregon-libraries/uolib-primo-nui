@@ -1,5 +1,9 @@
 # UO Primo New UI
 
+***LEGACY branch***: this should be removed by August 7th. This holds final
+customizations meant to be on the legacy Primo site while people are
+potentially still hitting it.
+
 ## Setup
 
 Copy `docker-compose.override-example.yml` to `docker-compose.override.yml` and
