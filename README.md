@@ -67,5 +67,5 @@ in real-time if you copied the override file as-is, or on an image rebuild.
 docker-compose run --rm server gulp create-package
 ```
 
-Select a package when prompted (typically this will be UO), and you'll have a
-new zip file in your local `packages` directory.
+Select a package when prompted (typically this will be `01ALLIANCE_UO-UO`), and
+you'll have a new zip file in your local `packages` directory.
