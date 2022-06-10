@@ -1,4 +1,4 @@
-var app = angular.module('viewCustom', ['angularLoad', 'externalSearchUO', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability']);
+var app = angular.module('viewCustom', ['angularLoad', 'externalSearchUO', 'toggleInstitutions', 'customActions', 'hathiTrustAvailability', 'showMmsid']);
 
 // This is required to make our overwritten externalSearch work - see
 // 00-replace-external-search.js
