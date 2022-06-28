@@ -63,7 +63,18 @@ in real-time if you copied the override file as-is, or on an image rebuild.
 
 ### Creating deploy packages
 
+Make sure your working directory is *pristine*, or things can get annoying /
+weird / broken. Make sure everything is checked in, then clean aggressively:
+
 ```sh
+docker-compose down -v
+git clean -xfd
+```
+
+Then rebuild the image and run the package tool:
+
+```sh
+docker-compose build
 docker-compose run --rm server gulp create-package
 ```
 
