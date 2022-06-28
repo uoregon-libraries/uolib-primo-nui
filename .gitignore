@@ -2,6 +2,7 @@
 /custom/**/custom1.css
 /custom/**/custom.js
 /custom/**/node_modules/*
+/custom/**/package-lock.json
 
 # Ignore docker overrides
 /docker-compose.override.yml
