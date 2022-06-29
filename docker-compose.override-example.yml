@@ -3,10 +3,6 @@ version: '2'
 
 services:
   server:
-    # Example override for using the sandbox proxy instead of prod
-    environment:
-      - PROXY=https://alliance-primo.hosted.exlibrisgroup.com:443
-
     # Expose ports to your host - this is pretty much a must, but it's in the
     # override because ports defined in the main docker-compose.yml cannot be
     # removed, just added to
