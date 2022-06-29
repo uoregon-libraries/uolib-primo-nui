@@ -17,3 +17,7 @@ prm-stand-alone-login .login-header a:hover, prm-stand-alone-login .login-header
 prm-stand-alone-login .login-card md-card-content prm-login prm-login-item > .md-list-item-text > p {
   color: #000 !important;
 }
+
+#item-details .arrow-link {
+  text-decoration: underline;
+}
