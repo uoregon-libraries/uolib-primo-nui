@@ -67,7 +67,10 @@ weird / broken. Make sure everything is checked in, then clean aggressively:
 
 ```sh
 docker-compose down -v
-git clean -xfd
+
+# Review the list of things git would clean to decide what you actually MUST
+# keep, like the docker compose override
+git clean -xfdn
 ```
 
 Then rebuild the image and run the package tool:
