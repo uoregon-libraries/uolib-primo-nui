@@ -19,7 +19,7 @@
 .info {
   background-attachment: scroll;
   background-clip: border-box;
-  background-color: rgb(217, 237, 247);
+  background-color: rgb(240, 240, 196);
   background-image: url("https://library.uoregon.edu/sites/all/modules/site_alert/css/icon-alert.png");
   background-origin: padding-box;
   background-position: 1% 50%;
@@ -27,7 +27,7 @@
   background-position-y: 50%;
   background-repeat: no-repeat;
   background-size: 30px 30px;
-  border-bottom-color: rgb(188, 232, 241);
+  border-bottom-color: red;
   border-bottom-style: solid;
   border-bottom-width: 0.833333px;
   border-image-outset: 0;
@@ -35,17 +35,17 @@
   border-image-slice: 100%;
   border-image-source: none;
   border-image-width: 1;
-  border-left-color: rgb(188, 232, 241);
+  border-left-color: red;
   border-left-style: solid;
   border-left-width: 0.833333px;
-  border-right-color: rgb(188, 232, 241);
+  border-right-color: red;
   border-right-style: solid;
   border-right-width: 0.833333px;
-  border-top-color: rgb(188, 232, 241);
+  border-top-color: red;
   border-top-style: solid;
   border-top-width: 0.833333px;
   box-sizing: border-box;
-  color: rgb(49, 112, 143);
+  color: rgb(0, 0, 0);
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 700;
@@ -58,7 +58,7 @@
 
 .alert-notice {
   box-sizing: border-box;
-  color: rgb(49, 112, 143);
+  color: rgb(0, 0, 0);
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
