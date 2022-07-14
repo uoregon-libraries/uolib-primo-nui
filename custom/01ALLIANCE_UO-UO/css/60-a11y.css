@@ -21,3 +21,8 @@ prm-stand-alone-login .login-card md-card-content prm-login prm-login-item > .md
 #item-details .arrow-link {
   text-decoration: underline;
 }
+
+::selection {
+	background: #0078D7;
+  color: #fff;
+}
