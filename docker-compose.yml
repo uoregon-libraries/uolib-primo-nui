@@ -8,3 +8,11 @@ services:
       - VIEW=01ALLIANCE_UO-UO
     volumes:
       - ./packages:/home/node/primo-explore-devenv/packages
+
+  codeshift:
+    build:
+      context: .
+      dockerfile: codeshift/Dockerfile
+    volumes:
+      - ./codeshift:/var/local/codeshift
+      - ./custom:/var/local/custom
