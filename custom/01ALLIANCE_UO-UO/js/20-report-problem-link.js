@@ -4,14 +4,18 @@ app.component('prmActionListAfter', {
   controller: 'prmActionListAfterController',
   bindings: {parentCtrl: '<'},
 });
-app.controller('prmActionListAfterController', ['$scope', '$element', function ($scope, $element) {
-  var item = this.parentCtrl.item;
-  // Get the first item in the case that this was a multiselect report
-  if (item instanceof Array) {
-    item = item[0];
-  }
-  var docID = item.pnx.control.recordid[0];
+app.controller('prmActionListAfterController', ['$scope', '$element', function($scope, $element) {
+  this.$onInit = function(){
+    {
+      var item = this.parentCtrl.item;
+      // Get the first item in the case that this was a multiselect report
+      if (item instanceof Array) {
+        item = item[0];
+      }
+      var docID = item.pnx.control.recordid[0];
 
-  $scope.docID = docID;
-  $scope.context = item.context;
+      $scope.docID = docID;
+      $scope.context = item.context;
+    }
+  };
 }]);

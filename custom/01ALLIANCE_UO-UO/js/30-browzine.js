@@ -17,7 +17,11 @@ app.component('prmSearchResultThumbnailContainerAfter', {
   template: '<browzine-thumbnail parent-ctrl="$ctrl.parentCtrl"></browzine-thumbnail>'
 });
 app.controller('prmSearchResultAvailabilityLineAfterController', function($scope) {
-  window.browzine.primo.searchResult($scope);
+  this.$onInit = function(){
+    {
+      window.browzine.primo.searchResult($scope);
+    }
+  };
 });
 
 // Begin BrowZine - Primo Integration...

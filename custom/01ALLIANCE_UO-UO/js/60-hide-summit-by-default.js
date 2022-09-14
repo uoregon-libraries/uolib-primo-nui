@@ -6,9 +6,14 @@ app.component("prmAlmaOtherMembersAfter", {
     parentCtrl: "<",
   },
   controller: [
-    function () {
+    function() {
       var ctrl = this;
-      ctrl.parentCtrl.isCollapsed = true;
+
+      this.$onInit = function(){
+        {
+          ctrl.parentCtrl.isCollapsed = true;
+        }
+      };
     },
   ],
 });

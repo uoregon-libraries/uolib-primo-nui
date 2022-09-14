@@ -8,17 +8,20 @@ app
 .component('prmFacetExactAfter', {template: '<external-search-contents />' });
 
 /* Top Nav link customizations,  */
-app.controller('prmTopNavBarLinksAfterController', ['$scope', '$element', function ($scope, $element) {
-  var pCtrl = this.parentCtrl;
-  $scope.pCtrl = pCtrl
+app.controller('prmTopNavBarLinksAfterController', ['$scope', '$element', function($scope, $element) {
+  this.$onInit = function(){
+    {
+      var pCtrl = this.parentCtrl;
+      $scope.pCtrl = pCtrl
 
-  /*** This is a hack of ExLibris code to manipulate the number of nav items ***/
-  // Overwrite ExLibris function to control number of menu items to show at large breakpoint
-  this.parentCtrl.showCount = function() {
-    return pCtrl.$mdMedia("lg") ? 5 : pCtrl.$mdMedia("md") ? 4 : pCtrl.$mdMedia("sm") ? 0 : pCtrl.$mdMedia("xs") ? 0 : 5
-  }
-  /*** End hack ***/
-
+      /*** This is a hack of ExLibris code to manipulate the number of nav items ***/
+      // Overwrite ExLibris function to control number of menu items to show at large breakpoint
+      this.parentCtrl.showCount = function() {
+        return pCtrl.$mdMedia("lg") ? 5 : pCtrl.$mdMedia("md") ? 4 : pCtrl.$mdMedia("sm") ? 0 : pCtrl.$mdMedia("xs") ? 0 : 5
+      }
+      /*** End hack ***/
+    }
+  };
 }]);
 app.component('prmTopNavBarLinksAfter',{
   bindings: {parentCtrl: '<'},
@@ -28,15 +31,19 @@ app.component('prmTopNavBarLinksAfter',{
 app.component('prmTopbarAfter', {
   bindings: {parentCtrl: '<'},
   controller: function($scope, $element) {
-    var flexes = $element.parent()[0].querySelectorAll('div[flex]');
-    var flexFirst = angular.element(flexes[0]);
-    var flexSecond = angular.element(flexes[1]);
+    this.$onInit = function(){
+      {
+        var flexes = $element.parent()[0].querySelectorAll('div[flex]');
+        var flexFirst = angular.element(flexes[0]);
+        var flexSecond = angular.element(flexes[1]);
 
-    flexFirst.attr('flex', '75');
-    flexFirst.addClass('flex-75');
-    flexFirst.removeClass('flex-50');
-    flexSecond.attr('flex-md', '25');
-    flexSecond.addClass('flex-md-25');
+        flexFirst.attr('flex', '75');
+        flexFirst.addClass('flex-75');
+        flexFirst.removeClass('flex-50');
+        flexSecond.attr('flex-md', '25');
+        flexSecond.addClass('flex-md-25');
+      }
+    };
   }
 });
 
@@ -48,7 +55,11 @@ app.component('prmUserAreaExpandableAfter', {
   bindings: {parentCtrl: '<'},
   templateUrl: LocalViewPath+'/html/showMenuButton.html',
   controller: function($scope, $element) {
-    $scope.pCtrl = $scope.$parent.$parent.$$childHead.$ctrl;
+    this.$onInit = function(){
+      {
+        $scope.pCtrl = $scope.$parent.$parent.$$childHead.$ctrl;
+      }
+    };
   }
 })
 
@@ -59,19 +70,23 @@ app.component('prmUserAreaExpandableAfter', {
 app.component('prmIconAfter', {
   controller: 'prmIconAfterController'
 });
-app.controller('prmIconAfterController', ['$scope', function ($scope) {
-  var parentCtrl = $scope.$parent.$ctrl;
-  if (parentCtrl.iconDefinition == 'peer-reviewed') {
-    // Overwrite default icon set and definition
-    parentCtrl.$element
-      .attr('svg-icon-set', 'social')
-      .attr('icon-definition', 'ic_people_24px');
-    // Recompile prm-icon
-    var injector = parentCtrl.$element.injector();
-    injector.invoke(function($compile){
-      return $compile(parentCtrl.$element)($scope);
-    });
-  }
+app.controller('prmIconAfterController', ['$scope', function($scope) {
+  this.$onInit = function(){
+    {
+      var parentCtrl = $scope.$parent.$ctrl;
+      if (parentCtrl.iconDefinition == 'peer-reviewed') {
+        // Overwrite default icon set and definition
+        parentCtrl.$element
+          .attr('svg-icon-set', 'social')
+          .attr('icon-definition', 'ic_people_24px');
+        // Recompile prm-icon
+        var injector = parentCtrl.$element.injector();
+        injector.invoke(function($compile){
+          return $compile(parentCtrl.$element)($scope);
+        });
+      }
+    }
+  };
 }]);
 
 /* Deal with LibrarySearch branding in searchbox */
@@ -79,6 +94,29 @@ app.component('prmSearchBarAfter', {
   bindings: {parentCtrl: '<'},
   template: '<div ng-class="(!$ctrl.parentCtrl.advancedSearch ?\'simple-mode\' : \'advanced-mode\')"><a href="/discovery/search?vid='+LocalViewID+'&lang=en"> <span>LibrarySearch</span></a></div>',
   controller: function($scope, $element) {
+    this.$onInit = function(){
+      {
+        /*
+          The search scope DOM elements just can't be configured until they're
+          loaded.
+
+          Race condition hack - keep checking until the elements can be
+          removed. We only do this every 500ms to avoid pegging CPU since Primo
+          could change on us at any time and make this code just run forever.
+        */
+        if (!this.parentCtrl.advancedSearch) {
+          var scopeHackInterval = setInterval(scopes_delay_hack, 500);
+          function scopes_delay_hack() {
+            var elem = document.querySelectorAll('md-option[value="JuvenileCollection"], md-option[value="SCUA"]');
+            if (elem.length > 0) {
+              angular.element(elem).remove();
+              clearInterval(scopeHackInterval);
+            }
+          }
+        }
+      }
+    };
+
     this.$postLink = function() {
       var row = '<div layout="row" class="layout-row flex-100"></div>'
       row = angular.element(row);
@@ -117,26 +155,6 @@ app.component('prmSearchBarAfter', {
       flexFirst.parent().addClass('layout-sm-column');
       flexFirst.parent().addClass('layout-xs-column');
     }
-
-    /*
-      The search scope DOM elements just can't be configured until they're
-      loaded.
-
-      Race condition hack - keep checking until the elements can be
-      removed. We only do this every 500ms to avoid pegging CPU since Primo
-      could change on us at any time and make this code just run forever.
-    */
-    if (!this.parentCtrl.advancedSearch) {
-      var scopeHackInterval = setInterval(scopes_delay_hack, 500);
-      function scopes_delay_hack() {
-        var elem = document.querySelectorAll('md-option[value="JuvenileCollection"], md-option[value="SCUA"]');
-        if (elem.length > 0) {
-          angular.element(elem).remove();
-          clearInterval(scopeHackInterval);
-        }
-      }
-    }
-
   },
 });
 
@@ -146,6 +164,10 @@ app.component('prmSearchBarAfter', {
 app.component('prmAccountAfter', {
   templateUrl: LocalViewPath+'/html/illLink.html',
   controller: function($scope) {
+    this.$onInit = function(){
+      {}
+    };
+
     this.$postLink = function() {
        var header = document.getElementsByTagName('prm-account')[0].querySelector('h1.toolbar-title').parentElement;
        var illLink = document.getElementById('uoIllLink');
@@ -163,30 +185,33 @@ app.component('prmAccountAfter', {
  */
 app.component('prmFullViewServiceContainerAfter', {
   bindings: {parentCtrl: '<'},
-  controller: function ($element) {
+  controller: function($element) {
+    this.$onInit = function(){
+      {
+        /* Base queries off full view service container element */
+        var elem = $element.parent().parent().parent().parent()[0];
 
-    /* Base queries off full view service container element */
-    var elem = $element.parent().parent().parent().parent()[0];
+        /* Swap View/Get It and Send To sections on pop-over */
+        var viewIt = angular.element(elem.querySelector('#getit_link1_0'));
+        var sendTo = angular.element(elem.querySelector('#action_list'));
+        viewIt.after(sendTo);
+        /* Swap View/Get It and Send To buttons on left */
+        var viewItButton = angular.element(elem.querySelector('[translate="nui.getit.alma_tab1_norestrict"]')).parent();
+        var getItButton = angular.element(elem.querySelector('[translate="nui.getit.alma_tab1_avail"]')).parent();
+        var sendToButton = angular.element(elem.querySelector('[translate="nui.brief.results.tabs.send_to"]')).parent();
+        getItButton.after(sendToButton);
+        viewItButton.after(sendToButton);
 
-    /* Swap View/Get It and Send To sections on pop-over */
-    var viewIt = angular.element(elem.querySelector('#getit_link1_0'));
-    var sendTo = angular.element(elem.querySelector('#action_list'));
-    viewIt.after(sendTo);
-    /* Swap View/Get It and Send To buttons on left */
-    var viewItButton = angular.element(elem.querySelector('[translate="nui.getit.alma_tab1_norestrict"]')).parent();
-    var getItButton = angular.element(elem.querySelector('[translate="nui.getit.alma_tab1_avail"]')).parent();
-    var sendToButton = angular.element(elem.querySelector('[translate="nui.brief.results.tabs.send_to"]')).parent();
-    getItButton.after(sendToButton);
-    viewItButton.after(sendToButton);
-
-    /* Swap Details and Links sections in pop-over */
-    var links = angular.element(elem.querySelector('#links'));
-    var details = angular.element(elem.querySelector('#details'));
-    links.after(details);
-    /* Swap Details and Links buttons on left */
-    var linksButton = angular.element(elem.querySelector('[translate="nui.brief.results.tabs.links"]')).parent();
-    var detailsButton = angular.element(elem.querySelector('[translate="brief.results.tabs.details"]')).parent();
-    linksButton.after(detailsButton);
+        /* Swap Details and Links sections in pop-over */
+        var links = angular.element(elem.querySelector('#links'));
+        var details = angular.element(elem.querySelector('#details'));
+        links.after(details);
+        /* Swap Details and Links buttons on left */
+        var linksButton = angular.element(elem.querySelector('[translate="nui.brief.results.tabs.links"]')).parent();
+        var detailsButton = angular.element(elem.querySelector('[translate="brief.results.tabs.details"]')).parent();
+        linksButton.after(detailsButton);
+      }
+    };
   }
 });
 
