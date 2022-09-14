@@ -48,14 +48,14 @@ On your first run, build the docker images: `docker-compose build`.  If you
 didn't opt to mount `custom` into the image via the override file, you'll have
 to rebuild the image whenever you change code.
 
-To run the server, just start up the stack: `docker-compose up -d`.
+To run the server, just start up the stack: `docker-compose up -d server`.
 
 Any time you change `custom/01ALLIANCE_UO-UO/package.json`, you will need to
 restart the container so the npm modules are installed:
 
 ```sh
 docker-compose down
-docker-compose up -d
+docker-compose up -d server
 ```
 
 You can edit the other files in your package's folder and changes will be made
@@ -92,3 +92,9 @@ docker-compose run --rm server gulp create-package
 
 Select a package when prompted (typically this will be `01ALLIANCE_UO-UO`), and
 you'll have a new zip file in your local `packages` directory.
+
+## Codeshift
+
+To run jscodeshift, simply build the image (e.g., `docker-compose build
+codeshift`) and then run that image (e.g., `docker-compose run --rm
+codeshift`). It's set up to replace all the JS files in our custom dir.
