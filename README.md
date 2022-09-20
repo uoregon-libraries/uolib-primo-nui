@@ -61,6 +61,15 @@ docker-compose up -d
 You can edit the other files in your package's folder and changes will be made
 in real-time if you copied the override file as-is, or on an image rebuild.
 
+### Central Package
+
+You should regularly update the central package files, otherwise customizations
+which would work in production will appear to be broken in dev. A simple script
+has been added to do this: `sync-central.sh`.
+
+This script deletes and then replaces the central package files with the latest
+from the alliance's github repo.
+
 ### Creating deploy packages
 
 Make sure your working directory is *pristine*, or things can get annoying /
