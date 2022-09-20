@@ -6,3 +6,6 @@
 
 # Ignore docker overrides
 /docker-compose.override.yml
+
+# Central package repo
+/ve-central-package

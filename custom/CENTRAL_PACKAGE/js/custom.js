@@ -1,7 +1,7 @@
 /*
 * 
 *	Orbis Cascade Alliance Central Package
-*	Last updated: 2022-02-07
+*	Last updated: 2022-08-22
 *	
 * Included customizations:
 *   Insert custom action (updated 2018-11-07)
@@ -9,11 +9,14 @@
 *   Toggle advanced search in mobile display (updated 2018-10-09)
 *   Favorite signin warning (updated 2021-01-19)
 *   Enlarge Covers (Updated 2021-12-06)
-*   Text a Call Number (Updated 2022-02-07)
+*   Text a Call Number (Updated 2022-05-23)
 *   External Search (Updated 2022-02-04)
 *   Force Login (Added 2020-10-22)
 *   eShelf Links (Added 2020-11-03)
 *   Hathi Trust Availability (Updated 2022-01-06)
+*   Availability facet counts (Added 2022-03-23)
+*   Hide Unwanted 856 Links (Added 2022-04-20)
+*   Show NZ and IZ MMS IDs (Added 2022-08-11)
 */
 
 
@@ -529,7 +532,7 @@ angular
             // Get form asynchronously
             $http({
               method: "GET",
-              url: 'https://cloud9.orbiscascade.org/sms/form.php?vid=' + vid + '&title=' + title + '&holdings=' + joined_holdings + '&libraries=' + smsActionOptions.libraries
+              url: 'https://pcsg.orbiscascade.org/sms/form.php?vid=' + vid + '&title=' + title + '&holdings=' + joined_holdings + '&libraries=' + smsActionOptions.libraries
             })
             .then(
               function(response) {
@@ -563,7 +566,7 @@ angular
                   // Send request
                   $http({
                     method: 'GET',
-                    url: 'https://cloud9.orbiscascade.org/sms/send.php?vid=' + vid + '&title=' + title + '&mms_id=' + mms_id + '&details=' + smsItemDetails + '&phone=' + $scope.smsPhone + '&provider=' + $scope.smsProvider + '&note=' + smsNote + '&include_link=' + smsLink
+                    url: 'https://pcsg.orbiscascade.org/sms/send.php?vid=' + vid + '&title=' + title + '&mms_id=' + mms_id + '&details=' + smsItemDetails + '&phone=' + $scope.smsPhone + '&provider=' + $scope.smsProvider + '&note=' + smsNote + '&include_link=' + smsLink
                   })
                   .then(
                     // Display confirmation
@@ -1091,5 +1094,204 @@ angular
     });
     //* End Hathi Trust Availability *//
 
+/* Add count to availability facet */
+angular
+    .module('availabilityCounts', [])
+    .component('availabilityCounts', {
+        controller: function ($scope, availabilityCountsOptions) {
+
+            var avail_group = 'tlevel';
+
+            this.$onInit = function () {
+                var parent_ctrl = $scope.$parent.$parent.$ctrl;
+                this.facet_group = parent_ctrl.facetGroup.name;
+                this.facet_results = parent_ctrl.facetService.results;
+                if (this.facet_group == avail_group) {
+                    this.processFacets();
+                }
+                // copy options from local package or central package defaults
+                this.msg = availabilityCountsOptions.msg;
+            }
+
+            this.processFacets = function () {
+                var self = this;
+                if (!self.msg) self.msg = '* Counts are approximate. Results may differ.';
+
+                angular.forEach(self.facet_results, function (result) {
+                    if (result.name == avail_group) {
+                        var first_value = result.values[0].value;
+                        var interval = setInterval(find_facet, 100);
+                        function find_facet() {
+                            if (document.querySelector(self.getSelector(first_value))) {
+
+                                // Clear interval
+                                clearInterval(interval);
+
+                                // Add availability counts as spans
+                                angular.forEach(result.values, function (facet) {
+                                    var selector = self.getSelector(facet.value);
+                                    if (document.querySelector(selector)) {
+                                        var facet_item = document.querySelector(selector);
+                                        if (facet_item.querySelector('.facet-counter') == null) {
+                                            var facet_text = facet_item.querySelector('.text-number-space');
+                                            var span = document.createElement('span');
+                                            var count = document.createTextNode(facet.count.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '*');
+                                            span.setAttribute('class', 'text-italic text-in-brackets text-rtl facet-counter');
+                                            span.appendChild(count);
+                                            facet_text.after(span);
+                                        }
+                                    }
+                                });
+
+                                // Facets are created and destroyed in the DOM when the group is toggled so watch for clicks
+                                var availGroup = document.querySelector(self.getSelector(avail_group));
+                                availGroup.addEventListener('click', function () {
+                                    self.processFacets();
+                                });
+
+                                // Add warning text
+                                if (!availGroup.querySelector('.section-content .warning')) {
+                                    var warning = document.createElement('span');
+                                    var warningText = document.createTextNode(self.msg);
+                                    warning.setAttribute('class', 'warning');
+                                    warning.appendChild(warningText);
+                                    availGroup.querySelector('.section-content').appendChild(warning);
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            this.getSelector = function (value) {
+                if (value == avail_group) {
+                    return 'div[data-facet-group="' + avail_group + '"]';
+                }
+                else {
+                    return 'div[data-facet-value="' + avail_group + '-' + value + '"]';
+                }
+            }
+
+        }
+    })
+    // Set default values for options
+    .value('availabilityCountsOptions', {
+        msg: '* Counts are approximate. Results may differ.'
+    });
+  //* End availability counts *//
+  
+  /* Hide unwanted 856 links */
+  app.value('linksToKeep', []).component('prmServiceLinksAfter', {
+    bindings: {
+      parentCtrl: '<'
+    },
+    controller: function controller($document, linksToKeep) {
+      angular.element(function () {
+        if (linksToKeep.length > 0) {
+          var lNodes = $document[0].querySelectorAll("prm-service-links > div > div > div");
+          for (var i = 0; i < lNodes.length; i++) {
+            var eNode = lNodes[i];
+            var span = eNode.querySelector("a > span");
+            if (span != null) {
+              if (!linksToKeep.includes(span.textContent.trim())) {
+                eNode.style.display = "none";
+              }
+            }
+          }
+        }
+      });
+    }
+  });
+  //* End unwanted 856 links *//
+  
+  /* showMmsid begin */
+  angular
+    .module('showMmsid', [])
+    .component('showMmsid', {
+        bindings: { parentCtrl: '<' },
+        controller: function controller($scope, $http, $element, showMmsidOptions) {
+            this.$onInit = function() {
+              /* seems to work better to default to show, and hide when unavailable*/
+              $scope.izShow=true;
+              $scope.nzShow=true;
+              $scope.nzClass="ng-show";
+              $scope.izClass="ng-show";
+              var izSuffix=showMmsidOptions.izSuffix;
+              $scope.izLabel=showMmsidOptions.izLabel;
+              $scope.nzLabel=showMmsidOptions.nzLabel;
+              var srcid=$scope.$parent.$parent.$ctrl.item.pnx.control.sourcerecordid[0];
+              //srcid is nz mmsid, implies no iz mmsid
+              if(srcid.substring(0,2)=="99" && srcid.substring(srcid.length - 4)!=izSuffix){
+                $scope.nzShow=true;
+                $scope.nzMmsid=srcid;
+                $scope.izShow=false;
+                $scope.izClass="ng-hide";
+              }
+              //srcid is iz mmsid, check sru for nz mmsid
+              if(srcid.substring(0,2)=="99" && srcid.substring(srcid.length - 4)==izSuffix){
+                $scope.izShow=true;
+                $scope.izMmsid=srcid;
+                sruCall(srcid);
+
+              }
+
+              /* src is not an mmsid */
+              if(srcid.substring(0,2)!="99"){
+                $scope.izShow=false;
+                $scope.nzShow=false;
+                $scope.nzClass="ng-hide";
+                $scope.izClass="ng-hide";
+
+              }
+
+              /*  make SRU call w/iz mmsid to check for nz mms id*/
+              function sruCall(string){
+                var instCode=showMmsidOptions.instCode;
+                var url="https://na01.alma.exlibrisgroup.com/view/sru/"+instCode+"?version=1.2&operation=searchRetrieve&query=alma.mms_id="+string;
+                $http.get(url).then(function (response) {
+                  var parser = new DOMParser();
+                  var xmlDoc = parser.parseFromString(response.data,"text/xml");
+                  var fields=xmlDoc.getElementsByTagName("datafield")
+                  var success=false;
+                  for (var j=0;j<fields.length;j++){
+                    var field=fields[j]
+                    var attr=field.getAttribute("tag");
+                    if(attr=="035"){
+                      var subfield=field.getElementsByTagName("subfield")[0].childNodes[0].nodeValue;
+                      //console.log(subfield)
+                      if(subfield.includes("(EXLNZ-01ALLIANCE_NETWORK)")){
+                        var pieces=subfield.split(")")
+                        $scope.nzMmsid=pieces[1]
+                        success=true;
+                        break;
+                      }
+                    }
+
+                  }
+                  if(success==false){
+                    $scope.nzShow=false;
+                    $scope.nzClass="ng-hide";
+                  }
+                });
+              } /* end sruCall*/
+
+            };
+        },
+      template: `<div  layout="row" layout-xs="column" class="layout-block-xs layout-xs-column layout-row {{izClass}}" ng-show="{{izShow}}">
+      <div flex-gt-sm="20" flex-gt-xs="25" flex="" class="flex-gt-xs-25 flex-gt-sm-20 flex">
+        <span class="bold-text word-break" data-details-label="mms"   title="Alma">{{izLabel}}</span>
+      </div>
+      <div class="item-details-element-container flex" flex="">{{izMmsid}}
+      </div>
+    </div>
+    <div  layout="row" layout-xs="column" class="layout-block-xs layout-xs-column layout-row {{nzClass}}" ng-show="{{nzShow}}">
+    <div flex-gt-sm="20" flex-gt-xs="25" flex="" class="flex-gt-xs-25 flex-gt-sm-20 flex">
+      <span class="bold-text word-break" data-details-label="mms"   title="Alma">{{nzLabel}}</span>
+    </div>
+    <div class="item-details-element-container flex" flex="">{{nzMmsid}}
+    </div>
+    </div>`
+    })
+    /* showMmsid end */
 
 })();
