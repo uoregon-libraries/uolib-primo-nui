@@ -17,7 +17,7 @@ app.controller('prmTopNavBarLinksAfterController', ['$scope', '$element', functi
       /*** This is a hack of ExLibris code to manipulate the number of nav items ***/
       // Overwrite ExLibris function to control number of menu items to show at large breakpoint
       this.parentCtrl.showCount = function() {
-        return pCtrl.$mdMedia("lg") ? 5 : pCtrl.$mdMedia("md") ? 4 : pCtrl.$mdMedia("sm") ? 0 : pCtrl.$mdMedia("xs") ? 0 : 5
+        return pCtrl.$mdMedia("lg") ? 5 : pCtrl.$mdMedia("md") ? 2 : pCtrl.$mdMedia("sm") ? 0 : pCtrl.$mdMedia("xs") ? 0 : 5
       }
       /*** End hack ***/
     }
