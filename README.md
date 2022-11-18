@@ -26,7 +26,7 @@ variable in `docker-compose.override.yml`, e.g.:
 Then you have to change the view in your URL, e.g.,
 `http://localhost:8003/discovery/search?vid=01ALLIANCE_UO:UOTEST`.
 
-Note that this isn't a "sticky" parameterIn the JavaScript we embed links and
+Note that this isn't a "sticky" parameter. In the JavaScript we embed links and
 we hard-code the view because links have to include that `vid` parameter.
 You'll have to watch (and possibly re-hack) your URL if you're trying to test a
 different view and you start clicking around.
