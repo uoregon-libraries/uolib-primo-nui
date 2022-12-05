@@ -78,8 +78,14 @@ weird / broken. Make sure everything is checked in, then clean aggressively:
 ```sh
 docker-compose down -v
 
-# Review the list of things git would clean to decide what you actually MUST
-# keep, like the docker compose override
+# Stuff you can always safely remove
+sudo rm -f custom/01ALLIANCE_UO-UO/css/custom1.css
+sudo rm -f custom/01ALLIANCE_UO-UO/js/custom.js
+sudo rm -rf custom/01ALLIANCE_UO-UO/node_modules/*
+sudo rm -f custom/01ALLIANCE_UO-UO/package-lock.json
+
+# Review the list of other things git would clean to decide what you actually
+# MUST keep, like the docker compose override
 git clean -xfdn
 ```
 
