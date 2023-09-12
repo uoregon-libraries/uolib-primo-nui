@@ -159,26 +159,6 @@ app.component('prmSearchBarAfter', {
 });
 
 
-/* Add My Illiad Account link: shows up on the "My Account" page above the menu
- * area, just after "My Account" */
-app.component('prmAccountAfter', {
-  templateUrl: LocalViewPath+'/html/illLink.html',
-  controller: function($scope) {
-    this.$onInit = function(){
-      {}
-    };
-
-    this.$postLink = function() {
-       var header = document.getElementsByTagName('prm-account')[0].querySelector('h1.toolbar-title').parentElement;
-       var illLink = document.getElementById('uoIllLink');
-       var divider = illLink.previousElementSibling;
-       angular.element(header).append(divider);
-       angular.element(header).append(illLink);
-    };
-  },
-});
-
-
 /*
  * Re-order sections in the detailed item view: puts "How to get it" above
  * "Send to", and "Details" above the "Links" section

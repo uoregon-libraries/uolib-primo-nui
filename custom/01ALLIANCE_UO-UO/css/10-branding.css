@@ -289,27 +289,6 @@ prm-full-view .services-index-under #services-index {
   max-width: 140px;
 }
 
-/* Style My Interlibrary Loan Account link in My Account */
-#uoIllLink {
-  margin-left: .5em;
-  margin-right: .5em;
-  font-weight: 300;
-  font-size: 1.2em;
-  text-decoration: underline;
-}
-#uoIllLink a:hover,
-#uoIllLink a:focus {
-  box-shadow: none;
-  background-color: transparent;
-}
-#uoIllLink md-icon {
-  height: 20px;
-  min-height: 20px;
-  min-width: 20px;
-  width: 20px;
-  margin-left: 2px;
-  top: -1px;
-}
 
 /* I'm so sorry... this is awful but needs to be set to make sure we get rid of
  * most of the blue links that still remain.  This will almost certainly have
