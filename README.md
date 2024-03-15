@@ -42,6 +42,18 @@ styles continue to work.
 
 When the alert period is over, delete that file.
 
+## Debugging Production
+
+When there's a problem in production, sometimes it's difficult to tell if it's
+ours or ExL's. One way to try to narrow it down is to strip out all our
+customizations first by adding a `noCustomization` parameter with the value
+`true` to the URL. e.g.:
+
+- [Default main page](https://alliance-uoregon.primo.exlibrisgroup.com/discovery/search?vid=01ALLIANCE_UO:UO&lang=en)
+- ["Vanilla" main page](https://alliance-uoregon.primo.exlibrisgroup.com/discovery/search?vid=01ALLIANCE_UO:UO&lang=en&noCustomization=true)
+- [Default item search page](https://alliance-uoregon.primo.exlibrisgroup.com/discovery/search?query=any,contains,the%20cat%20in%20the%20hat&tab=Rollup&search_scope=Everything&vid=01ALLIANCE_UO:UO&lang=en&offset=0)
+- ["Vanilla" item search page](https://alliance-uoregon.primo.exlibrisgroup.com/discovery/search?query=any,contains,the%20cat%20in%20the%20hat&tab=Rollup&search_scope=Everything&vid=01ALLIANCE_UO:UO&lang=en&offset=0&noCustomization=true)
+
 ## Development
 
 On your first run, build the docker images: `docker-compose build`.  If you
