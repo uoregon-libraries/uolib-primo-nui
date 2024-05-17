@@ -154,6 +154,10 @@ prm-facet-exact .section-title prm-icon {
 .md-button.button-as-link.link-alt-color, .md-button.button-link {
   color: #104735;
 }
+.md-button.button-link.link-alt-color {
+  color: #fff;
+  background-color: #104735;
+}
 .md-button.button-as-link.link-alt-color:hover:not([disabled]),
 .md-button.button-as-link.link-alt-color:focus:not([disabled]) {
   color: #104735;

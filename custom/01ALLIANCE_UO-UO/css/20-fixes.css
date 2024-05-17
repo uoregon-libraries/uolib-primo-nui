@@ -85,3 +85,8 @@ h3.item-title span.text-in-brackets {
 .section-content .md-chips .md-chip .md-chip-remove-container .md-button {
 	opacity: 1;
 }
+
+/* Update SCUA holdings link to be more visible to patrons */
+prm-location-holdings {
+	margin: 1em 0;
+}
