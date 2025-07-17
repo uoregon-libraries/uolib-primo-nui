@@ -90,3 +90,84 @@ h3.item-title span.text-in-brackets {
 prm-location-holdings {
 	margin: 1em 0;
 }
+
+/* Add Collections Discovery Customizations
+(https://primoviews.org/combined_code/collection-discovery/) */
+
+/* Header */
+.collection-info {
+	color: #FFF !important;
+}
+
+/* Fix styling of the breadcrumbs – also visible in the full title display */
+prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color {
+	box-shadow: none;
+	color: #FFF !important;
+	line-height: 24px;
+}
+ 
+prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover {
+	color: #104735 !important;
+	background: #FFF !important;
+	line-height: 24px;
+}
+
+prm-collection-navigation-breadcrumbs-item.root-item .md-button {
+	line-height: 0 !important;
+}
+
+/* Update link and button colors */
+
+prm-gallery-item .collection-element .item-title {
+	color: #104735 !important;
+}
+
+prm-gallery-collection .collection-folder .collection-header {
+	color: #104735 !important;
+}
+
+prm-collection-discovery-view-switcher .md-button.is-active, prm-collection-discovery-view-switcher .md-button.is-active:focus, prm-collection-discovery-view-switcher .md-button.is-active:hover {
+	color: #104735;
+}
+
+prm-collection-discovery-view-switcher .md-button.is-active._md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active.hovered:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active.md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus._md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus.hovered:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus.md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus:focus:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus:hover:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:focus:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover._md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover.hovered:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover.md-focused:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover:focus:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover:hover:not([disabled]),
+prm-collection-discovery-view-switcher .md-button.is-active:hover:not([disabled]) {
+	background-color: #104735;
+}
+
+prm-save-to-favorites-button .pin-button {
+	color: #104735 !important;
+}
+
+/* Display of author and year */
+prm-gallery-item-after {
+    padding: 20px 15px;
+    display: block;
+    margin-top: -30px;
+}
+
+prm-gallery-item-after div {
+    margin-bottom: -40px;
+    margin-top: -20px;
+}
+
+.is-grid-view prm-gallery-item .collection-element {
+    padding: 15px;
+}
+
+prm-gallery-item .collection-element .item-title {
+   padding-bottom: 30px;
+}
