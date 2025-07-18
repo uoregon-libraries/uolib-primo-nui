@@ -100,13 +100,13 @@ prm-location-holdings {
 }
 
 /* Fix styling of the breadcrumbs – also visible in the full title display */
-prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color {
+.collection-header-inner div prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color {
 	box-shadow: none;
 	color: #FFF !important;
 	line-height: 24px;
 }
  
-prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover {
+.collection-header-inner div prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover {
 	color: #104735 !important;
 	background: #FFF !important;
 	line-height: 24px;
@@ -150,6 +150,25 @@ prm-collection-discovery-view-switcher .md-button.is-active:hover:not([disabled]
 
 prm-save-to-favorites-button .pin-button {
 	color: #104735 !important;
+}
+
+.collectionsLinks prm-collection-navigation-breadcrumbs-item a {
+	color: #104735 !important;
+}
+
+.collectionsLinks prm-collection-navigation-breadcrumbs-item a:hover,
+.collectionsLinks prm-collection-navigation-breadcrumbs-item a:focus {
+  background-color: rgba(76,180,69,.1) !important;
+  box-shadow: inset 0 -1px 0 0 rgba(40,145,34,.5) !important;
+}
+
+prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color {
+	color: #104735 !important;
+}
+ 
+prm-collection-navigation-breadcrumbs-item .md-button.button-as-link.link-alt-color:hover {
+	background-color: rgba(76,180,69,.1) !important;
+	box-shadow: inset 0 -1px 0 0 rgba(40,145,34,.5) !important;
 }
 
 /* Display of author and year */
