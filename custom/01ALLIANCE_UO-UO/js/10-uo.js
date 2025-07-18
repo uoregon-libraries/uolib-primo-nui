@@ -204,3 +204,33 @@ app.component('prmSearchResultAvailabilityLineAfter', {
   template: '\n<hathi-trust-availability msg="Check availability in HathiTrust"></hathi-trust-availability>',
   controller: 'prmSearchResultAvailabilityLineAfterController'
 });
+
+/* Collections Discovery Authors/Date display 
+ * https://primoviews.org/combined_code/collection-discovery/ */
+app.component("prmGalleryItemAfter", {
+    bindings: {
+        parentCtrl: "<"
+    },
+    controller: function () {
+        var $ctrl = this;
+
+        $ctrl.$onInit = function () {
+            try {
+                $ctrl.author = $ctrl.parentCtrl.item.pnx.addata.au[0];
+            } catch (e) {
+                $ctrl.author = "";
+            }
+            try {
+                $ctrl.date = $ctrl.parentCtrl.item.pnx.display.creationdate[0];
+            } catch (e) {
+                $ctrl.date = "";
+            }
+            $ctrl.hasDate = !!$ctrl.date;
+            $ctrl.hasAuthor = !!$ctrl.author;
+        };
+    },
+    template: `
+    <div ng-if="$ctrl.hasDate">{{$ctrl.date}}</div>
+    <div ng-if="$ctrl.hasAuthor">{{$ctrl.author}}</div>
+    `,
+});
