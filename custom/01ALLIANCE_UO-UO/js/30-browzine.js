@@ -50,24 +50,6 @@ app.controller('prmSearchResultAvailabilityLineAfterController', function($scope
 
     articleRetractionWatchEnabled: true,
     articleRetractionWatchText: "Retracted Article",
-
-    unpaywallEmailAddressKey: "libsys-isd@ithelp.uoregon.edu",
-
-    articlePDFDownloadViaUnpaywallEnabled: true,
-    articlePDFDownloadViaUnpaywallText: "Download PDF (via Unpaywall)",
-
-    articleLinkViaUnpaywallEnabled: true,
-    articleLinkViaUnpaywallText: "Read Article (via Unpaywall)",
-
-    articleAcceptedManuscriptPDFViaUnpaywallEnabled: true,
-    articleAcceptedManuscriptPDFViaUnpaywallText: "Download PDF (Accepted Manuscript via Unpaywall)",
-
-    articleAcceptedManuscriptArticleLinkViaUnpaywallEnabled: true,
-    articleAcceptedManuscriptArticleLinkViaUnpaywallText: "Read Article (Accepted Manuscript via Unpaywall)",
-
-    // This should ensure unpaywall links work; see
-    // https://github.com/uoregon-libraries/uolib-primo-nui/issues/52
-    enableLinkOptimizer: false,
   };
 
   browzine.script = document.createElement("script");
