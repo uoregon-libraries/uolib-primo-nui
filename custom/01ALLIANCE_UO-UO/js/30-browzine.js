@@ -56,9 +56,6 @@ app.controller('prmSearchResultAvailabilityLineAfterController', function($scope
     articlePDFDownloadViaUnpaywallEnabled: true,
     articlePDFDownloadViaUnpaywallText: "Download PDF (via Unpaywall)",
 
-    articleLinkViaUnpaywallEnabled: true,
-    articleLinkViaUnpaywallText: "Read Article (via Unpaywall)",
-
     articleAcceptedManuscriptPDFViaUnpaywallEnabled: true,
     articleAcceptedManuscriptPDFViaUnpaywallText: "Download PDF (Accepted Manuscript via Unpaywall)",
 
