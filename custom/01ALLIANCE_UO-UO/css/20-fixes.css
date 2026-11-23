@@ -195,3 +195,31 @@ prm-gallery-item .collection-element .item-title {
 prm-topbar .isDeposit, prm-topbar .isServicePage, prm-topbar .isSummonOverAlma {
 	display: inline !important
 }
+
+/* ========================================
+   ALLOWED 856 LINKS (MARC FIELD)
+   ======================================== */
+ 
+/*
+ * Show only whitelisted external links in full display
+ * By default, hide all link containers, then selectively show allowed ones
+ */
+ 
+/* Hide all link containers by default */
+prm-service-links>div>div>ul>li {
+    display: none !important;
+}
+ 
+/* Show containers with allowed aria-label values */
+prm-service-links>div>div>ul>li:has(> a[aria-label="Display Source Record , opens in a new window"]),
+prm-service-links>div>div>ul>li:has(> a[aria-label="Display Source Record. , opens in a new window"]),
+prm-service-links>div>div>ul>li:has(> a[aria-label="Online access to digitized portions of this collection , opens in a new window"]),
+prm-service-links>div>div>ul>li:has(> a[aria-label="Online access to digitized portions of this collection. , opens in a new window"]),
+prm-service-links>div>div>ul>li:has(> a[aria-label="Notice of Interest in Unprocessed Collections , opens in a new window"]),
+prm-service-links>div>div>ul>li:has(> a[aria-label="Notice of Interest in Unprocessed Collections. , opens in a new window"]),
+prm-service-links>div>div>ul>li:has(> a[aria-label="Online access to digitized portions of this item , opens in a new window"]),
+prm-service-links>div>div>ul>li:has(> a[aria-label="Online access to digitized portions of this item. , opens in a new window"]),
+prm-service-links>div>div>ul>li:has(> a[aria-label="Table of contents , opens in a new window"]),
+prm-service-links>div>div>ul>li:has(> a[aria-label="Table of contents. , opens in a new window"]) {
+    display: inline !important;
+}
